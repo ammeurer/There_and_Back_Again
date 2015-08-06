@@ -1,0 +1,14 @@
+- place_name: 266 Romain St, San Francisco, 94114, California, United States
+  zoom: 16
+  center: 
+    - 37.7559312204799
+    - -122.44242310523985
+  tags: 
+    - userbookmark
+- place_name: 5214 Diamond Heights Blvd, San Francisco, 94131, California, United States
+  zoom: 12
+  center: 
+    - 37.743706929976675
+    - -122.4400520324707
+  tags: 
+    - userbookmark
