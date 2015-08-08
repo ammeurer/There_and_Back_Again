@@ -23,7 +23,14 @@ def index():
     """Homepage."""
 
     return render_template("map_walking_sample.html")
+@app.route('/signup', methods=['POST'])
+def sign_up():
+	user_name = request.form.get('name')
+	user_email = request.form.get('email')
+	user_password = request.form.get('password')
 
+	new_user = User.create_new_user(user_name, user_email, user_password)
+	return render_template('user_profile.html', email=new_user.email, name=new_user.name)
 # @app.route('/users')
 # def user_list():
 # 	""" Show list of users """

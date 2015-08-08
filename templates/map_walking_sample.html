@@ -1,77 +1,106 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset=utf-8 />
-<title>Walking directions</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
-<style>
-  body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; }
-</style>
-</head>
+    <head>
+        <meta charset=utf-8 />
+        <title>There and Back Again</title>
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+        <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+        <script src='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.js'></script>
+        <link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.css' type='text/css' />
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+    </head>
 <body>
-<style>
+    <div id='map'></div>
+    <div id='inputs'></div>
+    <div id='errors'></div>
+    <div id='directions'>
+      <div id='routes'></div>
+      <div id='instructions'></div>
+    </div>
 
-@font-face {
-  font-family: 'Hobbitbrushhand';
-  src: url('static/hobbitonbrushhand.ttf');
-}
 
 
-#inputs,
-#errors,
-#directions {
-    position: absolute;
-    width: 33.3333%;
-    max-width: 300px;
-    min-width: 200px;
-}
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign up</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" action="/signup" method='post'>
+    <fieldset>
 
-#inputs {
-    z-index: 10;
-    top: 10px;
-    left: 10px;
-}
+        <!-- Form Name -->
+        <legend>Welcome! Sign up to travel there and back again.</legend>
 
-#directions {
-    z-index: 99;
-    background: rgba(0,0,0,.8);
-    top: 0;
-    right: 0;
-    bottom: 0;
-    overflow: auto;
-}
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Name</label>  
+          <div class="col-md-4">
+          <input id="name" name="name" type="text" placeholder="Enter your name." class="form-control input-md" required="">
+            
+          </div>
+        </div>
 
-#errors {
-    z-index: 8;
-    opacity: 0;
-    padding: 10px;
-    border-radius: 0 0 3px 3px;
-    background: rgba(0,0,0,.25);
-    top: 90px;
-    left: 10px;
-}
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">Email</label>  
+          <div class="col-md-4">
+          <input id="email" name="email" type="text" placeholder="Enter your email." class="form-control input-md" required="">
+            
+          </div>
+        </div>
 
-li {
-    font-family: 'Hobbitbrushhand', 'Georgia', serif;
-}
-</style>
+        <!-- Password input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="password">New Password</label>
+          <div class="col-md-4">
+            <input id="password" name="password" type="password" placeholder="Choose a password." class="form-control input-md" required="">
+            
+          </div>
+        </div>
 
-<script src='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.js'></script>
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.css' type='text/css' />
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="signup"></label>
+          <div class="col-md-4">
+            <button id="signup" name="signup" class="btn btn-primary">Sign Up</button>
+          </div>
+        </div>
 
-<div id='map'></div>
-<div id='inputs'></div>
-<div id='errors'></div>
-<div id='directions'>
-  <div id='routes'></div>
-  <div id='instructions'></div>
+        </fieldset>
+        </form>
+
+                ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
+<script type="text/javascript">
+
+    $(window).load(function(){
+        $('#myModal').modal('show');
+    });
+
+</script>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiYW1tZXVyZXIiLCJhIjoiMjg1M2JlM2QwMmE2NjIzZjJmODRjYWM1NDRjODg5YWEifQ.SZQ4FO0OqKTTE4tiv4Au4A';
-var map = L.mapbox.map('map', 'ammeurer.658ed0f9', {
+var map = L.mapbox.map('map', 'ammeurer.5d704af1', {
     zoomControl: true
 }).setView([37.78, -122.416], 13);
 
@@ -98,6 +127,7 @@ var directionsRoutesControl = L.mapbox.directions.routesControl('routes', direct
 
 var directionsInstructionsControl = L.mapbox.directions.instructionsControl('instructions', directions)
     .addTo(map);
+
 </script>
 </body>
 </html>

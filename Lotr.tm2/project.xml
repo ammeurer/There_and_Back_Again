@@ -6,11 +6,11 @@
   <Parameter name="attribution"><![CDATA[<a href='http://mapbox.com/about/maps' target='_blank'>Terms & Feedback</a>]]></Parameter>
   <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
   <Parameter name="center">12.5039,41.887,18</Parameter>
-  <Parameter name="description"><![CDATA[A painstakingly hand-drawn representation of the entire world. 2B graphite on acid-free paper.]]></Parameter>
-  <Parameter name="format">png8:m=h</Parameter>
-  <Parameter name="maxzoom">21</Parameter>
-  <Parameter name="minzoom">0</Parameter>
-  <Parameter name="name"><![CDATA[Pencil]]></Parameter>
+  <Parameter name="description"><![CDATA[Modified Pencil style to look old]]></Parameter>
+  <Parameter name="format">jpeg80</Parameter>
+  <Parameter name="maxzoom">19</Parameter>
+  <Parameter name="minzoom">12</Parameter>
+  <Parameter name="name"><![CDATA[Pencil - LOTR]]></Parameter>
   <Parameter name="source"><![CDATA[mapbox:///mapbox.mapbox-terrain-v1,mapbox.mapbox-streets-v5,mapbox.mapbox-bathymetry-v1]]></Parameter>
 </Parameters>
 
@@ -133,31 +133,31 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <PolygonSymbolizer fill="#f8ecc2" gamma="0.5" />
+    <PolygonSymbolizer fill="#b7c3b8" gamma="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <PolygonSymbolizer fill="#f8ecc2" gamma="0.5" />
+    <PolygonSymbolizer fill="#b7c3b8" gamma="0.5" />
   </Rule>
 </Style>
 <Style name="water-light16" filter-mode="first" image-filters="agg-stack-blur(32,32)" image-filters-inflate="true">
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <PolygonSymbolizer fill="#f8ecc2" gamma="0.5" />
+    <PolygonSymbolizer fill="#b7c3b8" gamma="0.5" />
   </Rule>
 </Style>
 <Style name="water-light15" filter-mode="first" image-filters="agg-stack-blur(16,16)" image-filters-inflate="true">
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <PolygonSymbolizer fill="#f8ecc2" gamma="0.5" />
+    <PolygonSymbolizer fill="#b7c3b8" gamma="0.5" />
   </Rule>
 </Style>
 <Style name="water-light14" filter-mode="first" image-filters="agg-stack-blur(8,8)" image-filters-inflate="true">
   <Rule>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <PolygonSymbolizer fill="#f8ecc2" gamma="0.5" />
+    <PolygonSymbolizer fill="#b7c3b8" gamma="0.5" />
   </Rule>
 </Style>
 <Style name="water-dark" filter-mode="first">
@@ -1421,257 +1421,13 @@
     <StyleName>admin-glow</StyleName>
     <StyleName>admin</StyleName>  </Layer>
 
-<Style name="country_label_line" filter-mode="first">
-  <Rule>
-    <LineSymbolizer stroke="#223344" stroke-opacity="0.8" stroke-width="0.8" stroke-dasharray="5, 2" />
-  </Rule>
-</Style>
 <Layer name="country_label_line"
   srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
-    <StyleName>country_label_line</StyleName>  </Layer>
+      </Layer>
 
-<Style name="country_label" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="16" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>3000000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
-    <Filter>([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="14" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>6500000</MaxScaleDenominator>
-    <MinScaleDenominator>3000000</MinScaleDenominator>
-    <Filter>([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="12" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500000</MaxScaleDenominator>
-    <MinScaleDenominator>6500000</MinScaleDenominator>
-    <Filter>([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="11" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>200000000</MaxScaleDenominator>
-    <MinScaleDenominator>100000000</MinScaleDenominator>
-    <Filter>([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer opacity="0.75" face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>12500000</MinScaleDenominator>
-    <Filter>([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([scalerank] = 5)</Filter>
-    <TextSymbolizer size="18" wrap-width="120" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>3000000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
-    <Filter>([scalerank] = 5)</Filter>
-    <TextSymbolizer size="16" wrap-width="90" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>6500000</MaxScaleDenominator>
-    <MinScaleDenominator>3000000</MinScaleDenominator>
-    <Filter>([scalerank] = 5)</Filter>
-    <TextSymbolizer size="14" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500000</MaxScaleDenominator>
-    <MinScaleDenominator>6500000</MinScaleDenominator>
-    <Filter>([scalerank] = 5)</Filter>
-    <TextSymbolizer size="13" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>12500000</MinScaleDenominator>
-    <Filter>([scalerank] = 5)</Filter>
-    <TextSymbolizer size="12" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>200000000</MaxScaleDenominator>
-    <MinScaleDenominator>100000000</MinScaleDenominator>
-    <Filter>([scalerank] = 5)</Filter>
-    <TextSymbolizer opacity="0.75" face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([scalerank] = 5)</Filter>
-    <TextSymbolizer face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([scalerank] = 4)</Filter>
-    <TextSymbolizer size="20" wrap-width="120" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>3000000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
-    <Filter>([scalerank] = 4)</Filter>
-    <TextSymbolizer size="18" wrap-width="120" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>6500000</MaxScaleDenominator>
-    <MinScaleDenominator>3000000</MinScaleDenominator>
-    <Filter>([scalerank] = 4)</Filter>
-    <TextSymbolizer size="16" wrap-width="90" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500000</MaxScaleDenominator>
-    <MinScaleDenominator>6500000</MinScaleDenominator>
-    <Filter>([scalerank] = 4)</Filter>
-    <TextSymbolizer size="15" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>12500000</MinScaleDenominator>
-    <Filter>([scalerank] = 4)</Filter>
-    <TextSymbolizer size="13" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>200000000</MaxScaleDenominator>
-    <MinScaleDenominator>100000000</MinScaleDenominator>
-    <Filter>([scalerank] = 4)</Filter>
-    <TextSymbolizer opacity="0.75" face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([scalerank] = 4)</Filter>
-    <TextSymbolizer face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>3000000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([scalerank] = 3)</Filter>
-    <TextSymbolizer size="20" wrap-width="120" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>6500000</MaxScaleDenominator>
-    <MinScaleDenominator>3000000</MinScaleDenominator>
-    <Filter>([scalerank] = 3)</Filter>
-    <TextSymbolizer size="18" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500000</MaxScaleDenominator>
-    <MinScaleDenominator>6500000</MinScaleDenominator>
-    <Filter>([scalerank] = 3)</Filter>
-    <TextSymbolizer size="17" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>12500000</MinScaleDenominator>
-    <Filter>([scalerank] = 3)</Filter>
-    <TextSymbolizer size="15" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000000</MaxScaleDenominator>
-    <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([scalerank] = 3)</Filter>
-    <TextSymbolizer size="11" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>200000000</MaxScaleDenominator>
-    <MinScaleDenominator>100000000</MinScaleDenominator>
-    <Filter>([scalerank] = 3)</Filter>
-    <TextSymbolizer opacity="0.75" face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>50000000</MinScaleDenominator>
-    <Filter>([scalerank] = 3)</Filter>
-    <TextSymbolizer face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer size="20" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>12500000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer size="17" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000000</MaxScaleDenominator>
-    <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer size="13" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000000</MaxScaleDenominator>
-    <MinScaleDenominator>50000000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer size="12" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>200000000</MaxScaleDenominator>
-    <MinScaleDenominator>100000000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer opacity="0.75" face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>200000000</MinScaleDenominator>
-    <Filter>([scalerank] = 2)</Filter>
-    <TextSymbolizer face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="20" wrap-width="120" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>12500000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="20" wrap-width="120" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000000</MaxScaleDenominator>
-    <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="14" wrap-width="90" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000000</MaxScaleDenominator>
-    <MinScaleDenominator>50000000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="13" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>200000000</MaxScaleDenominator>
-    <MinScaleDenominator>100000000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer size="12" wrap-width="60" opacity="0.75" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>200000000</MinScaleDenominator>
-    <Filter>([scalerank] = 1)</Filter>
-    <TextSymbolizer face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>200000000</MaxScaleDenominator>
-    <MinScaleDenominator>100000000</MinScaleDenominator>
-    <TextSymbolizer opacity="0.75" face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <TextSymbolizer face-name="Viking-Normal Regular" placement="point" size="10" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1" halo-rasterizer="fast" wrap-width="30" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-</Style>
 <Layer name="country_label"
   srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
-    <StyleName>country_label</StyleName>  </Layer>
+      </Layer>
 
 <Style name="marine_label" filter-mode="first">
   <Rule>
@@ -1697,28 +1453,6 @@
     <TextSymbolizer placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
-    <MaxScaleDenominator>6500000</MaxScaleDenominator>
-    <MinScaleDenominator>3000000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 5)</Filter>
-    <TextSymbolizer size="16" character-spacing="4" line-spacing="1" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500000</MaxScaleDenominator>
-    <MinScaleDenominator>6500000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 5)</Filter>
-    <TextSymbolizer size="14" character-spacing="3" line-spacing="8" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>12500000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 5)</Filter>
-    <TextSymbolizer size="12" character-spacing="2" line-spacing="6" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 5)</Filter>
-    <TextSymbolizer placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
     <MaxScaleDenominator>12500000</MaxScaleDenominator>
     <MinScaleDenominator>6500000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 4)</Filter>
@@ -1765,6 +1499,28 @@
   <Rule>
     <MaxScaleDenominator>6500000</MaxScaleDenominator>
     <MinScaleDenominator>3000000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 5)</Filter>
+    <TextSymbolizer size="16" character-spacing="4" line-spacing="1" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 5)</Filter>
+    <TextSymbolizer size="14" character-spacing="3" line-spacing="8" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 5)</Filter>
+    <TextSymbolizer size="12" character-spacing="2" line-spacing="6" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 5)</Filter>
+    <TextSymbolizer placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <MinScaleDenominator>3000000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 6)</Filter>
     <TextSymbolizer size="14" character-spacing="3" line-spacing="8" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
@@ -1792,34 +1548,6 @@
   </Rule>
   <Rule>
     <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 6)</Filter>
-    <TextSymbolizer placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500000</MaxScaleDenominator>
-    <MinScaleDenominator>6500000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 3)</Filter>
-    <TextSymbolizer size="18" character-spacing="5" line-spacing="10" placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>12500000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 3)</Filter>
-    <TextSymbolizer size="15" character-spacing="4" line-spacing="8" placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000000</MaxScaleDenominator>
-    <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 3)</Filter>
-    <TextSymbolizer size="13" character-spacing="3" line-spacing="8" placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000000</MaxScaleDenominator>
-    <MinScaleDenominator>50000000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 3)</Filter>
-    <TextSymbolizer size="12" character-spacing="2" line-spacing="3" placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 3)</Filter>
     <TextSymbolizer placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
@@ -1853,30 +1581,30 @@
   <Rule>
     <MaxScaleDenominator>12500000</MaxScaleDenominator>
     <MinScaleDenominator>6500000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 2)</Filter>
-    <TextSymbolizer size="24" character-spacing="5" line-spacing="10" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+    <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 3)</Filter>
+    <TextSymbolizer size="18" character-spacing="5" line-spacing="10" placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000000</MaxScaleDenominator>
     <MinScaleDenominator>12500000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 2)</Filter>
-    <TextSymbolizer size="20" character-spacing="4" line-spacing="8" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+    <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 3)</Filter>
+    <TextSymbolizer size="15" character-spacing="4" line-spacing="8" placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000000</MaxScaleDenominator>
     <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 2)</Filter>
-    <TextSymbolizer size="14" character-spacing="2" line-spacing="8" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+    <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 3)</Filter>
+    <TextSymbolizer size="13" character-spacing="3" line-spacing="8" placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000000</MaxScaleDenominator>
     <MinScaleDenominator>50000000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 2)</Filter>
-    <TextSymbolizer size="13" character-spacing="1" line-spacing="6" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+    <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 3)</Filter>
+    <TextSymbolizer size="12" character-spacing="2" line-spacing="3" placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 2)</Filter>
-    <TextSymbolizer placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+    <Filter>([mapnik::geometry_type] = 2) and ([labelrank] = 3)</Filter>
+    <TextSymbolizer placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500000</MaxScaleDenominator>
@@ -1907,25 +1635,31 @@
     <TextSymbolizer placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 2)</Filter>
+    <TextSymbolizer size="24" character-spacing="5" line-spacing="10" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
     <MaxScaleDenominator>25000000</MaxScaleDenominator>
     <MinScaleDenominator>12500000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 1)</Filter>
-    <TextSymbolizer size="30" character-spacing="20" line-spacing="32" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 2)</Filter>
+    <TextSymbolizer size="20" character-spacing="4" line-spacing="8" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000000</MaxScaleDenominator>
     <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 1)</Filter>
-    <TextSymbolizer size="25" character-spacing="16" line-spacing="24" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 2)</Filter>
+    <TextSymbolizer size="14" character-spacing="2" line-spacing="8" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000000</MaxScaleDenominator>
     <MinScaleDenominator>50000000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 1)</Filter>
-    <TextSymbolizer size="20" character-spacing="8" line-spacing="16" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 2)</Filter>
+    <TextSymbolizer size="13" character-spacing="1" line-spacing="6" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
-    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 1)</Filter>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 2)</Filter>
     <TextSymbolizer placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
@@ -1951,6 +1685,28 @@
     <TextSymbolizer placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 1)</Filter>
+    <TextSymbolizer size="30" character-spacing="20" line-spacing="32" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000000</MaxScaleDenominator>
+    <MinScaleDenominator>25000000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 1)</Filter>
+    <TextSymbolizer size="25" character-spacing="16" line-spacing="24" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000000</MaxScaleDenominator>
+    <MinScaleDenominator>50000000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 1)</Filter>
+    <TextSymbolizer size="20" character-spacing="8" line-spacing="16" placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Filter>([mapnik::geometry_type] = 1) and ([labelrank] = 1)</Filter>
+    <TextSymbolizer placement="point" wrap-width="50" wrap-before="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
     <Filter>([mapnik::geometry_type] = 2)</Filter>
     <TextSymbolizer placement="line" avoid-edges="true" face-name="KellsFLF Regular" fill="#cae3f5" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
@@ -1963,296 +1719,130 @@
   srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
     <StyleName>marine_label</StyleName>  </Layer>
 
-<Style name="state_label" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([area] &gt; 100000)</Filter>
-    <TextSymbolizer size="18" character-spacing="2" halo-radius="2" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>6500000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
-    <Filter>([area] &gt; 100000)</Filter>
-    <TextSymbolizer size="18" character-spacing="3" wrap-width="60" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>6500000</MinScaleDenominator>
-    <Filter>([area] &gt; 100000)</Filter>
-    <TextSymbolizer size="14" wrap-width="40" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000000</MaxScaleDenominator>
-    <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([area] &gt; 100000)</Filter>
-    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" size="10" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([area] &gt; 50000)</Filter>
-    <TextSymbolizer size="18" character-spacing="2" halo-radius="2" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>6500000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
-    <Filter>([area] &gt; 50000)</Filter>
-    <TextSymbolizer size="16" character-spacing="1" wrap-width="60" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>6500000</MinScaleDenominator>
-    <Filter>([area] &gt; 50000)</Filter>
-    <TextSymbolizer size="14" wrap-width="40" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000000</MaxScaleDenominator>
-    <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([area] &gt; 50000)</Filter>
-    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" size="10" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>6500000</MinScaleDenominator>
-    <Filter>([area] &gt; 10000)</Filter>
-    <TextSymbolizer size="12" wrap-width="40" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([area] &gt; 10000)</Filter>
-    <TextSymbolizer halo-radius="2" size="16" character-spacing="2" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>6500000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
-    <Filter>([area] &gt; 10000)</Filter>
-    <TextSymbolizer size="14" wrap-width="60" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000000</MaxScaleDenominator>
-    <MinScaleDenominator>25000000</MinScaleDenominator>
-    <Filter>([area] &gt; 10000)</Filter>
-    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" size="10" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <TextSymbolizer halo-radius="2" size="16" character-spacing="2" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>6500000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
-    <TextSymbolizer size="14" wrap-width="60" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000000</MaxScaleDenominator>
-    <MinScaleDenominator>6500000</MinScaleDenominator>
-    <TextSymbolizer wrap-width="40" face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" size="10" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000000</MaxScaleDenominator>
-    <MinScaleDenominator>25000000</MinScaleDenominator>
-    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" size="10" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-</Style>
 <Layer name="state_label"
   srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
-    <StyleName>state_label</StyleName>  </Layer>
+      </Layer>
 
 <Style name="place_label" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 4) and ([scalerank] &lt;= 5)</Filter>
-    <TextSymbolizer size="20" fill="#32302e" wrap-width="400" face-name="Viking-Normal Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="20" fill="#32302e" wrap-width="400" face-name="KellsFLF Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 4) and ([scalerank] &lt;= 5)</Filter>
-    <TextSymbolizer size="19" fill="#32302e" wrap-width="300" face-name="Viking-Normal Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="19" fill="#32302e" wrap-width="300" face-name="KellsFLF Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 4) and ([scalerank] &lt;= 5)</Filter>
-    <TextSymbolizer size="19" wrap-width="200" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="19" wrap-width="200" face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 4) and ([scalerank] &lt;= 5)</Filter>
-    <TextSymbolizer size="18" wrap-width="100" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>400000</MaxScaleDenominator>
-    <MinScaleDenominator>200000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 4) and ([scalerank] &lt;= 5)</Filter>
-    <TextSymbolizer size="17" wrap-width="80" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 4) and ([scalerank] &lt;= 5)</Filter>
-    <TextSymbolizer size="17" wrap-width="70" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>750000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 4) and ([scalerank] &lt;= 5)</Filter>
-    <TextSymbolizer size="16" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="18" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>3000000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 4) and ([scalerank] &lt;= 5)</Filter>
-    <TextSymbolizer size="15" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" wrap-width="40" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 2) and ([scalerank] &lt;= 3)</Filter>
-    <TextSymbolizer size="20" fill="#32302e" wrap-width="400" face-name="Viking-Normal Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="20" fill="#32302e" wrap-width="400" face-name="KellsFLF Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 2) and ([scalerank] &lt;= 3)</Filter>
-    <TextSymbolizer size="20" fill="#32302e" wrap-width="300" face-name="Viking-Normal Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="20" fill="#32302e" wrap-width="300" face-name="KellsFLF Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 2) and ([scalerank] &lt;= 3)</Filter>
-    <TextSymbolizer size="19" wrap-width="200" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="19" wrap-width="200" face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 2) and ([scalerank] &lt;= 3)</Filter>
-    <TextSymbolizer size="19" wrap-width="100" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>400000</MaxScaleDenominator>
-    <MinScaleDenominator>200000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 2) and ([scalerank] &lt;= 3)</Filter>
-    <TextSymbolizer size="19" wrap-width="80" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 2) and ([scalerank] &lt;= 3)</Filter>
-    <TextSymbolizer size="19" wrap-width="70" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>750000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 2) and ([scalerank] &lt;= 3)</Filter>
-    <TextSymbolizer size="17" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="19" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>3000000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 2) and ([scalerank] &lt;= 3)</Filter>
-    <TextSymbolizer size="16" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" wrap-width="40" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 0) and ([scalerank] &lt;= 1)</Filter>
-    <TextSymbolizer size="20" fill="#32302e" wrap-width="400" face-name="Viking-Normal Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="20" fill="#32302e" wrap-width="400" face-name="KellsFLF Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 0) and ([scalerank] &lt;= 1)</Filter>
-    <TextSymbolizer size="20" fill="#32302e" wrap-width="300" face-name="Viking-Normal Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="20" fill="#32302e" wrap-width="300" face-name="KellsFLF Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 0) and ([scalerank] &lt;= 1)</Filter>
-    <TextSymbolizer size="20" wrap-width="200" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="20" wrap-width="200" face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 0) and ([scalerank] &lt;= 1)</Filter>
-    <TextSymbolizer size="20" wrap-width="100" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>400000</MaxScaleDenominator>
-    <MinScaleDenominator>200000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 0) and ([scalerank] &lt;= 1)</Filter>
-    <TextSymbolizer size="20" wrap-width="80" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 0) and ([scalerank] &lt;= 1)</Filter>
-    <TextSymbolizer size="20" wrap-width="70" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>750000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 0) and ([scalerank] &lt;= 1)</Filter>
-    <TextSymbolizer size="19" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="20" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>3000000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 0) and ([scalerank] &lt;= 1)</Filter>
-    <TextSymbolizer size="18" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" wrap-width="40" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="19" fill="#32302e" wrap-width="400" face-name="Viking-Normal Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="19" fill="#32302e" wrap-width="400" face-name="KellsFLF Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="18" fill="#32302e" wrap-width="300" face-name="Viking-Normal Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="18" fill="#32302e" wrap-width="300" face-name="KellsFLF Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="17" wrap-width="200" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="17" wrap-width="200" face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="17" wrap-width="100" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>400000</MaxScaleDenominator>
-    <MinScaleDenominator>200000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="16" wrap-width="80" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="15" wrap-width="70" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>750000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="14" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="17" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>3000000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2) and ([scalerank] &gt;= 6)</Filter>
-    <TextSymbolizer size="13" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" wrap-width="40" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -2366,186 +1956,168 @@
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([type] = 'village') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="14" wrap-width="100" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="14" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'village') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer wrap-width="80" size="12" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer wrap-width="80" size="12" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([type] = 'village') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="12" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-width="60" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-width="60" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([type] = 'village') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="20" wrap-width="200" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="20" wrap-width="200" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([type] = 'village') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="18" wrap-width="160" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="18" wrap-width="160" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'village') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="16" wrap-width="120" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="16" wrap-width="120" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>750000</MaxScaleDenominator>
     <MinScaleDenominator>200000</MinScaleDenominator>
     <Filter>([type] = 'village') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" size="11" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-width="60" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" size="11" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-width="60" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([type] = 'town') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="22" wrap-width="240" halo-radius="2" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="22" wrap-width="240" halo-radius="2" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'town') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="20" wrap-width="200" halo-radius="2" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="20" wrap-width="200" halo-radius="2" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([type] = 'town') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="18" wrap-width="160" halo-radius="2" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="18" wrap-width="160" halo-radius="2" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'town') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="16" wrap-width="120" halo-radius="2" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="16" wrap-width="120" halo-radius="2" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([type] = 'town') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="15" wrap-width="80" halo-radius="2" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="15" wrap-width="80" halo-radius="2" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>400000</MaxScaleDenominator>
     <MinScaleDenominator>200000</MinScaleDenominator>
     <Filter>([type] = 'town') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="14" halo-radius="2" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-width="75" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="14" halo-radius="2" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-width="75" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>750000</MaxScaleDenominator>
     <MinScaleDenominator>400000</MinScaleDenominator>
     <Filter>([type] = 'town') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="13" halo-radius="2" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-width="75" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="13" halo-radius="2" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-rasterizer="fast" wrap-width="75" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>3000000</MaxScaleDenominator>
     <MinScaleDenominator>750000</MinScaleDenominator>
     <Filter>([type] = 'town') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="12" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-width="75" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-width="75" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer fill="#32302e" size="20" wrap-width="400" face-name="Viking-Normal Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer fill="#32302e" size="20" wrap-width="400" face-name="KellsFLF Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer fill="#32302e" size="19" wrap-width="300" face-name="Viking-Normal Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer fill="#32302e" size="19" wrap-width="300" face-name="KellsFLF Regular" placement="point" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="18" wrap-width="200" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="18" wrap-width="200" face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="17" wrap-width="100" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>400000</MaxScaleDenominator>
-    <MinScaleDenominator>200000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="16" wrap-width="80" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750000</MaxScaleDenominator>
-    <MinScaleDenominator>400000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="15" wrap-width="70" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>1500000</MaxScaleDenominator>
-    <MinScaleDenominator>750000</MinScaleDenominator>
-    <Filter>([type] = 'city') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="14" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="17" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>3000000</MaxScaleDenominator>
-    <MinScaleDenominator>1500000</MinScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
     <Filter>([type] = 'city') and ([localrank] &lt;= 2)</Filter>
-    <TextSymbolizer size="13" wrap-width="60" face-name="Viking-Normal Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#171616" halo-fill="#ffffff" halo-radius="2" halo-rasterizer="fast" wrap-width="40" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([type] = 'hamlet')</Filter>
+    <Filter>([type] = 'neighbourhood')</Filter>
     <TextSymbolizer size="18" wrap-width="160" face-name="KellsFLF Regular" placement="point" fill="#614d39" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([type] = 'hamlet')</Filter>
+    <Filter>([type] = 'neighbourhood')</Filter>
     <TextSymbolizer size="16" wrap-width="130" face-name="KellsFLF Regular" placement="point" fill="#614d39" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([type] = 'hamlet')</Filter>
+    <Filter>([type] = 'neighbourhood')</Filter>
     <TextSymbolizer size="14" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#614d39" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([type] = 'hamlet')</Filter>
+    <Filter>([type] = 'neighbourhood')</Filter>
     <TextSymbolizer size="12" wrap-width="80" face-name="KellsFLF Regular" placement="point" fill="#614d39" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <MinScaleDenominator>1500</MinScaleDenominator>
-    <Filter>([type] = 'neighbourhood')</Filter>
+    <Filter>([type] = 'hamlet')</Filter>
     <TextSymbolizer size="18" wrap-width="160" face-name="KellsFLF Regular" placement="point" fill="#614d39" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([type] = 'neighbourhood')</Filter>
+    <Filter>([type] = 'hamlet')</Filter>
     <TextSymbolizer size="16" wrap-width="130" face-name="KellsFLF Regular" placement="point" fill="#614d39" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([type] = 'neighbourhood')</Filter>
+    <Filter>([type] = 'hamlet')</Filter>
     <TextSymbolizer size="14" wrap-width="100" face-name="KellsFLF Regular" placement="point" fill="#614d39" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([type] = 'neighbourhood')</Filter>
+    <Filter>([type] = 'hamlet')</Filter>
     <TextSymbolizer size="12" wrap-width="80" face-name="KellsFLF Regular" placement="point" fill="#614d39" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-2" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
@@ -2570,25 +2142,25 @@
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([type] = 'village')</Filter>
-    <TextSymbolizer size="20" wrap-width="200" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="20" wrap-width="200" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([type] = 'village')</Filter>
-    <TextSymbolizer size="18" wrap-width="160" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="18" wrap-width="160" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([type] = 'village')</Filter>
-    <TextSymbolizer size="16" wrap-width="120" face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="16" wrap-width="120" face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([localrank] &lt;= 1) and ([type] = 'village')</Filter>
-    <TextSymbolizer face-name="Viking-Normal Regular" placement="point" fill="#2e2d2b" size="11" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-width="60" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer face-name="KellsFLF Regular" placement="point" fill="#2e2d2b" size="11" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" wrap-width="60" wrap-before="true" line-spacing="-4" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="place_label"
@@ -2726,340 +2298,352 @@
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 10000)</Filter>
-    <TextSymbolizer size="11" avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 10000)</Filter>
-    <TextSymbolizer size="10" avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="10" avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 10000)</Filter>
+    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 10000)</Filter>
+    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 10000)</Filter>
-    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 5000)</Filter>
-    <TextSymbolizer size="11" avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 5000)</Filter>
-    <TextSymbolizer size="10" avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="10" avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 5000)</Filter>
+    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 5000)</Filter>
+    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 5000)</Filter>
-    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 2500)</Filter>
-    <TextSymbolizer size="11" avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 2500)</Filter>
-    <TextSymbolizer size="10" avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 2500)</Filter>
-    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="10" avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 2500)</Filter>
-    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 2500)</Filter>
-    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 1200)</Filter>
-    <TextSymbolizer size="11" avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 1200)</Filter>
-    <TextSymbolizer size="10" avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 1200)</Filter>
-    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="10" avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 1200)</Filter>
-    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 0)</Filter>
-    <TextSymbolizer size="11" avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 0)</Filter>
-    <TextSymbolizer size="10" avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="10" avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] != 'motorway') and ([class] != 'main') and ([class] != 'street') and ([class] != 'street_limited') and ([len] &gt; 0)</Filter>
-    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
-    <TextSymbolizer size="14" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
-    <TextSymbolizer size="12" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
-    <TextSymbolizer size="11" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
-    <TextSymbolizer size="10" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>200000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer minimum-distance="50" size="9" file="img/shield/generic-sm-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
-    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>200000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer size="9" file="img/shield/generic-sm-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" minimum-distance="40" ><![CDATA[[ref]]]></ShieldSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main')</Filter>
-    <TextSymbolizer size="14" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main')</Filter>
-    <TextSymbolizer size="12" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main')</Filter>
-    <TextSymbolizer size="11" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main')</Filter>
-    <TextSymbolizer size="10" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>200000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main')</Filter>
-    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer avoid-edges="true" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#666666" size="9" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
-    <TextSymbolizer size="14" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="KellsFLF Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <TextSymbolizer size="14" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
-    <TextSymbolizer size="12" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="KellsFLF Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <TextSymbolizer size="12" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
-    <TextSymbolizer size="11" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="KellsFLF Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <TextSymbolizer size="11" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
-    <TextSymbolizer size="10" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="KellsFLF Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <TextSymbolizer size="10" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer minimum-distance="50" size="9" file="img/shield/generic-sm-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
-    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <ShieldSymbolizer minimum-distance="50" size="9" file="img/shield/generic-sm-[reflen].png" face-name="KellsFLF Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>200000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer size="9" file="img/shield/generic-sm-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" minimum-distance="40" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <ShieldSymbolizer size="9" file="img/shield/generic-sm-[reflen].png" face-name="KellsFLF Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" minimum-distance="40" ><![CDATA[[ref]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway')</Filter>
-    <TextSymbolizer size="14" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="14" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway')</Filter>
-    <TextSymbolizer size="12" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway')</Filter>
-    <TextSymbolizer size="11" face-name="Viking-Normal Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway')</Filter>
-    <TextSymbolizer size="10" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="10" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'motorway')</Filter>
-    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
+    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="KellsFLF Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <TextSymbolizer size="14" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
+    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="KellsFLF Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <TextSymbolizer size="12" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
+    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="KellsFLF Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <TextSymbolizer size="11" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
+    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="KellsFLF Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <TextSymbolizer size="10" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
+    <ShieldSymbolizer minimum-distance="50" size="9" file="img/shield/generic-sm-[reflen].png" face-name="KellsFLF Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
+    <ShieldSymbolizer size="9" file="img/shield/generic-sm-[reflen].png" face-name="KellsFLF Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" minimum-distance="40" ><![CDATA[[ref]]]></ShieldSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main')</Filter>
+    <TextSymbolizer size="14" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main')</Filter>
+    <TextSymbolizer size="12" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main')</Filter>
+    <TextSymbolizer size="11" face-name="KellsFLF Regular" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main')</Filter>
+    <TextSymbolizer size="10" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([mapnik::geometry_type] = 2) and ([class] = 'main')</Filter>
+    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street') and ([len] &gt; 2500)</Filter>
-    <TextSymbolizer size="9" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="9" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street') and ([len] &gt; 2500)</Filter>
-    <TextSymbolizer size="12" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street') and ([len] &gt; 2500)</Filter>
-    <TextSymbolizer size="11" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street') and ([len] &gt; 2500)</Filter>
-    <TextSymbolizer size="9" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="9" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street') and ([len] &gt; 2500)</Filter>
-    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street')</Filter>
-    <TextSymbolizer size="12" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street')</Filter>
-    <TextSymbolizer size="11" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street')</Filter>
-    <TextSymbolizer size="9" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="9" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <Filter>([class] = 'motorway') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="KellsFLF Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([class] = 'motorway') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer minimum-distance="50" size="9" file="img/shield/generic-sm-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <ShieldSymbolizer minimum-distance="50" size="9" file="img/shield/generic-sm-[reflen].png" face-name="KellsFLF Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>200000</MinScaleDenominator>
     <Filter>([class] = 'motorway') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer size="9" file="img/shield/generic-sm-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" minimum-distance="40" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <ShieldSymbolizer size="9" file="img/shield/generic-sm-[reflen].png" face-name="KellsFLF Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" minimum-distance="40" ><![CDATA[[ref]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <Filter>([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <ShieldSymbolizer spacing="400" minimum-distance="80" size="11" file="img/shield/generic-md-[reflen].png" face-name="KellsFLF Regular" fill="#555555" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>200000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer minimum-distance="50" size="9" file="img/shield/generic-sm-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <ShieldSymbolizer minimum-distance="50" size="9" file="img/shield/generic-sm-[reflen].png" face-name="KellsFLF Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" ><![CDATA[[ref]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>200000</MinScaleDenominator>
     <Filter>([class] = 'main') and ([reflen] &gt; 0) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer size="9" file="img/shield/generic-sm-[reflen].png" face-name="Viking-Normal Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" minimum-distance="40" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <ShieldSymbolizer size="9" file="img/shield/generic-sm-[reflen].png" face-name="KellsFLF Regular" fill="#555555" spacing="200" avoid-edges="true" minimum-padding="5" minimum-distance="40" ><![CDATA[[ref]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street_limited')</Filter>
-    <TextSymbolizer size="12" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="12" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street_limited')</Filter>
-    <TextSymbolizer size="11" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="11" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street_limited')</Filter>
-    <TextSymbolizer size="9" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer size="9" avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>50000</MinScaleDenominator>
     <Filter>([mapnik::geometry_type] = 2) and ([class] = 'street_limited')</Filter>
-    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="Viking-Normal Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
+    <TextSymbolizer avoid-edges="true" text-transform="uppercase" character-spacing="0.25" placement="line" face-name="KellsFLF Regular" fill="#444444" size="8" halo-fill="#ffffff" halo-radius="1.5" halo-rasterizer="fast" minimum-distance="200" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
 <Layer name="road_label"

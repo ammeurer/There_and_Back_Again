@@ -18,7 +18,7 @@ def add_crime_data():
 				# print find_date.group(3), find_date.group(1), find_date.group(2)
 				crime_date = datetime.datetime(int(find_date.group(3)), int(find_date.group(1)), int(find_date.group(2)))
 
-		print "Crime_type=%s Lat=%s Lon=%s crime_date=%s" % (crime_type, lat, lon, crime_date)
+		print "<Crime_type=%s Lat=%s Lon=%s crime_date=%s>" % (crime_type, lat, lon, crime_date)
 
 
 if __name__ == '__main__':

@@ -19,7 +19,7 @@ Map {
   ::light15[zoom=15],
   ::light16[zoom=16],
   ::light17[zoom>=17] {
-    polygon-fill: #F8ECC2 ;
+    polygon-fill: #B7C3B8 ;
     
     polygon-gamma: 0.5;
     image-filters: agg-stack-blur(8,8);

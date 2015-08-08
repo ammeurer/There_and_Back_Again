@@ -1,4 +1,5 @@
 _prefs: 
+  mapid: ammeurer.5d704af1
   saveCenter: false
 _properties: {}
 attribution: "<a href='http://mapbox.com/about/maps' target='_blank'>Terms & Feedback</a>"
@@ -11,13 +12,13 @@ center:
   - 12.5039
   - 41.887
   - 18
-description: A painstakingly hand-drawn representation of the entire world. 2B graphite on acid-free paper.
-format: "png8:m=h"
+description: Modified Pencil style to look old
+format: jpeg80
 interactivity_layer: ''
 layers: null
-maxzoom: 21
-minzoom: 0
-name: Pencil
+maxzoom: 19
+minzoom: 12
+name: Pencil - LOTR
 source: "mapbox:///mapbox.mapbox-terrain-v1,mapbox.mapbox-streets-v5,mapbox.mapbox-bathymetry-v1"
 styles: 
   - style.mss

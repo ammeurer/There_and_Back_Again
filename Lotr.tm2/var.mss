@@ -5,19 +5,8 @@
 // Language
 @name: '[name]';
 
-// set up font sets for various weights and styles
-@sans_lt:           "Open Sans Regular","Arial Unicode MS Regular";
-@sans_lt_italic:    "Open Sans Italic","Arial Unicode MS Regular";
-@sans:              "Open Sans Semibold","Arial Unicode MS Regular";
-@sans_bold:         "Open Sans Bold","Arial Unicode MS Regular";
-@sans_italic:       "Open Sans Semibold Italic","Arial Unicode MS Regular";
-@sans_bold_italic:  "Open Sans Bold Italic","Arial Unicode MS Regular";
 
-@bilbo:             "Bilbo-hand Regular";
-@hobbit:            "Hobbiton Brushhand Hobbiton brush";
-@party:              "Party Business Regular";
-@meath:             "MeathFLF Regular";
-@viking:            "Viking-Normal Regular";
+
 @kells:              "KellsFLF Regular";
 // =====================================================================
 // LANDUSE & LANDCOVER COLORS

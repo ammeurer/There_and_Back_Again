@@ -27,7 +27,7 @@ class User(db.Model):
 
 
     @classmethod
-    def add_new_user(cls, email, password, name):
+    def create_new_user(cls, name, email, password):
         new_user = cls(email=email, password=password, user_name=name)
         db.session.add(new_user)
         db.session.commit()
@@ -127,7 +127,8 @@ def connect_to_db(app):
     """Connect the database to our Flask app."""
 
     # Configure to use our SQLite database
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_profiles.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ammeurer@localhost/lotr'
+    # postgresql://scott:tiger@localhost/mydatabase
     db.app = app
     db.init_app(app)
 
