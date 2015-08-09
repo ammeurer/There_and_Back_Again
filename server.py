@@ -30,7 +30,7 @@ def sign_up():
 	user_password = request.form.get('password')
 
 	new_user = User.create_new_user(user_name, user_email, user_password)
-	return render_template('user_profile.html', email=new_user.email, name=new_user.name)
+	return render_template('user_profile.html', email=new_user.email, name=new_user.user_name)
 # @app.route('/users')
 # def user_list():
 # 	""" Show list of users """

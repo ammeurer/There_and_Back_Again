@@ -133,31 +133,31 @@
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
     <MinScaleDenominator>2500</MinScaleDenominator>
-    <PolygonSymbolizer fill="#b7c3b8" gamma="0.5" />
+    <PolygonSymbolizer fill="#c9bf9e" gamma="0.5" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <PolygonSymbolizer fill="#b7c3b8" gamma="0.5" />
+    <PolygonSymbolizer fill="#c9bf9e" gamma="0.5" />
   </Rule>
 </Style>
 <Style name="water-light16" filter-mode="first" image-filters="agg-stack-blur(32,32)" image-filters-inflate="true">
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
-    <PolygonSymbolizer fill="#b7c3b8" gamma="0.5" />
+    <PolygonSymbolizer fill="#c9bf9e" gamma="0.5" />
   </Rule>
 </Style>
 <Style name="water-light15" filter-mode="first" image-filters="agg-stack-blur(16,16)" image-filters-inflate="true">
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <PolygonSymbolizer fill="#b7c3b8" gamma="0.5" />
+    <PolygonSymbolizer fill="#c9bf9e" gamma="0.5" />
   </Rule>
 </Style>
 <Style name="water-light14" filter-mode="first" image-filters="agg-stack-blur(8,8)" image-filters-inflate="true">
   <Rule>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <PolygonSymbolizer fill="#b7c3b8" gamma="0.5" />
+    <PolygonSymbolizer fill="#c9bf9e" gamma="0.5" />
   </Rule>
 </Style>
 <Style name="water-dark" filter-mode="first">
