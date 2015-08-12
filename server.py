@@ -6,7 +6,7 @@ from flask import Flask, render_template, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 
 from model import User, Contact, Route, connect_to_db, db
-
+from random import choice
 
 app = Flask(__name__)
 
@@ -21,8 +21,30 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def index():
     """Homepage."""
+    quote = pick_quote()
+    if session.get('logged_in_user') is None:
+    	print "***************", "No logged in user"
+    	user = None
+    else:
+    	print "****************", "there is a user logged in", session.get('logged_in_user')
+    	user = User.get_user_by_id(session.get('logged_in_user'))
+    return render_template("map_walking_sample.html", quote=quote, user=user)
 
-    return render_template("map_walking_sample.html")
+def pick_quote():
+	quote_list = [
+		"'All we have to decide is what to do with the time that is given to us.' -Gandalf the Grey",
+		"'If more of us valued food and cheer and song above hoarded gold, it would be a merrier world.'  -Thorin Oakenshield",
+		"'But in the end it's only a passing thing, this shadow; even darkness must pass.' -Samwise Gamgee",
+		"'Not all those who wander are lost.' -J.R.R. Tolkien",
+		"'It's a dangerous business, Frodo, going out your door. You step onto the road, and if you don't keep your feet, there's no knowing where you might be swept off to.' -Bilbo Baggins",
+		"'But no living man am I! You look upon a woman.' -Eowyn",
+		"'It is not the strength of the body, but the strength of the spirit.' -J.R.R. Tolkien",
+		"'Deeds will not be less valiant because they are unpraised.' -Aragorn",
+		"'Even the smallest person can change the course of history.' -Lady Galadriel"
+	]
+	quote = choice(quote_list)
+	return quote
+
 @app.route('/signup', methods=['POST'])
 def sign_up():
 	user_name = request.form.get('name')
@@ -30,7 +52,10 @@ def sign_up():
 	user_password = request.form.get('password')
 
 	new_user = User.create_new_user(user_name, user_email, user_password)
-	return render_template('user_profile.html', email=new_user.email, name=new_user.user_name)
+	session['logged_in_user'] = new_user.user_id
+	return redirect('/')
+	# return render_template('user_profile.html', email=new_user.email, name=new_user.user_name)
+
 # @app.route('/users')
 # def user_list():
 # 	""" Show list of users """
@@ -49,36 +74,33 @@ def sign_up():
 # 	"""Show login form."""
 # 	return render_template("login.html")
 #
-# @app.route("/login", methods=["POST"])
-# def process_login():
-# 	"""Log user into siteself.
-# 	Find the user's login credentials located in the 'request.form'
-# 	dictionary, look up the user, and store them in the session.
-# 	"""
-# 	email_input = request.form.get("email")
-# 	pword_input = request.form.get("password")
-#
-# 	user = User.query.filter_by(email=email_input).first()
-# 	print "******************", user
-# 	if user is None:
-# 		flash("Welcome new user!")
-# 		new_user = User.add_new_user(email=email_input, password=pword_input)
-# 		session['logged_in_user'] = new_user.user_id
-# 		return redirect("/users/" + str(new_user.user_id))
-# 	else:
-# 		if pword_input != user.password:
-# 			flash("Incorrect password, try again")
-# 			return redirect("/login")
-# 		else:
-# 			flash("Login successful!!")
-# 			session['logged_in_user'] = user.user_id
-# 			return redirect("/users/" + str(user.user_id))
-#
-# @app.route('/logout')
-# def process_logout():
-# 	del session['logged_in_user']
-# 	flash("You have been logged out")
-# 	return redirect("/")
+@app.route("/login", methods=["POST"])
+def process_login():
+	"""Log user into siteself.
+	Find the user's login credentials located in the 'request.form'
+	dictionary, look up the user, and store them in the session.
+	"""
+	email_input = request.form.get("email")
+	pword_input = request.form.get("password")
+
+	user = User.get_user(email_input)
+	print "******************", user
+	if user is None:
+		flash("Your email is not in our system. Please sign up!")
+	else:
+		if pword_input != user.password:
+			# flash("Incorrect password, try again")
+			return redirect("/")
+		else:
+			# flash("Login successful!!")
+			session['logged_in_user'] = user.user_id
+			return redirect("/")
+
+@app.route('/logout')
+def process_logout():
+	del session['logged_in_user']
+	# flash("You have been logged out")
+	return redirect("/")
 #
 # @app.route('/users/<int:user_id>')
 # def display_user_details(user_id):

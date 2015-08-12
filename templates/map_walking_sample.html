@@ -16,17 +16,58 @@
         <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
         <script src='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.js'></script>
         <link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.css' type='text/css' />
-        <link rel="stylesheet" type="text/css" href="static/style.css">
+<!--         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+ -->        <link rel="stylesheet" type="text/css" href="static/style.css">
     </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" id='navigation'>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" id='nav-title' href="/">
+        There and Back Again
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li> -->
+        {% if user %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.user_name }}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li id=''><a href="/logout">Log out</a></li>
+            <li id='profile'><a href="#">Your Profile</a></li>
+            <li role="separator" class="divider"></li>
+            <li id='saved-routes'><a href="#">Your Saved Walks</a></li>
+            <li id='route'><a href="#">Plan a journey</a></li>
+<!--             <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li> -->
+          </ul>
+        </li>
+        {% else %}
     
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome! <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li id='login'><a href="#">Log in</a></li>
+            <li id='signup'><a href="#">Sign up</a></li>
+            <li role="separator" class="divider"></li>
+            <li id='route'><a href="#">Plan a journey</a></li>
+<!--             <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li> -->
+          </ul>
+        </li>
+        {% endif %}
+<!--         <li class='active navbar-text navbar-right'>{{ quote }}</li>
+ -->      </ul>
+  </div>
+<!--         <div id='inputs'></div>
+ --><!--      <a id='nav-title' class="navbar-text navbar-left" href="/"><h3>There and Back Again</h3></a> -->
   </div>
 </nav>
     <div id='map'></div>
     <div id='inputs'></div>
-    <div id='errors'></div>
+   <div id='errors'></div>
     <div id='directions'>
       <div id='routes'></div>
       <div id='instructions'></div>
@@ -34,20 +75,22 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- Sign up Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Sign up</h4>
+        <h4 class="modal-title" id="myModalLabel">Sign up to save routes, add and customize alerts to family and friends.</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" action="/signup" method='post'>
     <fieldset>
 
         <!-- Form Name -->
-        <legend>Welcome! Sign up to travel there and back again.</legend>
+<!--         <legend>Sign up to save your favorite walks, and customize alerts to family and friends.</legend>
+ -->
+
 
         <!-- Text input-->
         <div class="form-group">
@@ -96,10 +139,77 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
 
-    $(window).load(function(){
-        $('#myModal').modal('show');
+
+
+<!-- Log in Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Log in</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" action="/login" method='post'>
+    <fieldset>
+
+        <!-- Form Name -->
+<!--         <legend>Sign up to save your favorite walks, and customize alerts to family and friends.</legend>
+ -->
+
+
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">Email</label>  
+          <div class="col-md-4">
+          <input id="email" name="email" type="text" placeholder="Enter your email." class="form-control input-md" required="">
+            
+          </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="password">Password</label>
+          <div class="col-md-4">
+            <input id="password" name="password" type="password" placeholder="Enter your password." class="form-control input-md" required="">
+            
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="login"></label>
+          <div class="col-md-4">
+            <button id="signup" name="signup" class="btn btn-primary">Log in</button>
+          </div>
+        </div>
+
+        </fieldset>
+        </form>
+
+                ...
+      </div>
+      <div class="modal-footer">
+<!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+        $('#directions').hide();
+
+    $('#signup').click(function(){
+        $('#signupModal').modal('show');
+    });
+
+    $('#login').click(function(){
+        $('#loginModal').modal('show');
+    });
+    $('#inputs').submit(function(){
+        $('#directions').show();
     });
 
 

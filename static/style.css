@@ -15,6 +15,8 @@ body {
 @font-face {
   font-family: 'Hobbitbrushhand';
   src: url('hobbitonbrushhand.ttf');
+  font-family: 'Ringbearer';
+  src: url('ring.ttf');  
 }
 
 
@@ -29,8 +31,8 @@ body {
 
 #inputs {
     z-index: 10;
-    top: 10px;
-    left: 10px;
+    top: 70px;
+    right: 10px;
 }
 
 #directions {
@@ -52,6 +54,13 @@ body {
     left: 10px;
 }
 
-li {
-    font-family: 'Hobbitbrushhand', 'Georgia', serif;
+#nav-title {
+    font-family: 'Ringbearer', 'Georgia', serif;
+    color: rgb(214, 173, 51);
+
+
+}
+
+#navigation {
+    /*background-color: rgba(0,71,0,.8);*/
 }

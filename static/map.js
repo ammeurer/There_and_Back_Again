@@ -1,3 +1,4 @@
+<script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiYW1tZXVyZXIiLCJhIjoiMjg1M2JlM2QwMmE2NjIzZjJmODRjYWM1NDRjODg5YWEifQ.SZQ4FO0OqKTTE4tiv4Au4A';
 var map = L.mapbox.map('map', 'ammeurer.5d704af1', {
     zoomControl: true
@@ -26,3 +27,4 @@ var directionsRoutesControl = L.mapbox.directions.routesControl('routes', direct
 
 var directionsInstructionsControl = L.mapbox.directions.instructionsControl('instructions', directions)
     .addTo(map);
+</script>

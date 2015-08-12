@@ -7,7 +7,7 @@
 Map {
   background-image:url(img/natural_paper.png);
   background-image-opacity: 0.5;
-  background-color: #F8ECC2;
+  background-color: #DFD4AF ;
   font-directory: url("fonts/");
 }
 
@@ -19,7 +19,7 @@ Map {
   ::light15[zoom=15],
   ::light16[zoom=16],
   ::light17[zoom>=17] {
-    polygon-fill: #C9BF9E;
+    polygon-fill: #E0F6F6   ;
     
     polygon-gamma: 0.5;
     image-filters: agg-stack-blur(8,8);
@@ -32,8 +32,8 @@ Map {
   ::texture {
     comp-op: multiply;
     polygon-pattern-alignment: global;
-   polygon-pattern-file:url(img/water.png);
-        polygon-pattern-opacity: 0.4;
+   polygon-pattern-file:url(img/shade_dark.png);
+        polygon-pattern-opacity: 0.7;
 
   }
 }

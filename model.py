@@ -33,6 +33,15 @@ class User(db.Model):
         db.session.commit()
         return new_user
 
+    @classmethod
+    def get_user(cls, email):
+        user = cls.query.filter_by(email=email).first()
+        return user
+    @classmethod
+    def get_user_by_id(cls, user_id):
+        user = cls.query.filter_by(user_id=user_id).first()
+        return user
+
     def __repr__(self):
         """Provide helpful representation when printed."""
 
