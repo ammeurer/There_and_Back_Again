@@ -4,6 +4,7 @@ from jinja2 import StrictUndefined
 
 from flask import Flask, render_template, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
+import requests
 
 from model import User, Contact, Route, connect_to_db, db
 from random import choice
@@ -101,6 +102,10 @@ def process_logout():
 	del session['logged_in_user']
 	# flash("You have been logged out")
 	return redirect("/")
+
+@app.route('/get-route')
+def get_data():
+    return requests.get('http://127.0.0.1:5000/viaroute?loc=37.750499,-122.438275&loc=37.747207,-122.444755&instructions=true').content
 #
 # @app.route('/users/<int:user_id>')
 # def display_user_details(user_id):
@@ -217,4 +222,4 @@ if __name__ == "__main__":
     # Use the DebugToolbar
     #DebugToolbarExtension(app)
 
-    app.run()
+    app.run(host='localhost', port=9000)

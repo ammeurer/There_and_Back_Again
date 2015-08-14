@@ -198,6 +198,40 @@
     </div>
   </div>
 </div>
+<div id="inputs" class="mapbox-directions-inputs">
+    <form>
+        <div class="mapbox-directions-origin">
+        <!--     <label class="mapbox-form-label">
+                <span class="mapbox-directions-icon mapbox-depart-icon"></span>
+            </label> -->
+            <input type="text" required="required" id="mapbox-directions-origin-input" placeholder="Start">
+            <div class="mapbox-directions-icon mapbox-close-icon" title="Clear value">
+            </div>
+        </div>
+        <span class="mapbox-directions-icon mapbox-reverse-icon mapbox-directions-reverse-input" title="Reverse origin &amp; destination"></span>
+        <div class="mapbox-directions-destination">
+            <!-- <label class="mapbox-form-label">
+                <span class="mapbox-directions-icon mapbox-arrive-icon"></span>
+            </label> -->
+            <input type="text" required="required" id="mapbox-directions-destination-input" placeholder="End">
+            <div class="mapbox-directions-icon mapbox-close-icon" title="Clear value">
+            </div>
+        </div>
+        <div class="mapbox-directions-profile"><span>
+            <input type="radio" name="profile" id="mapbox-directions-profile-driving">
+            <label for="mapbox-directions-profile-driving">Driving
+            </label>
+        </span><span><input type="radio" name="profile" id="mapbox-directions-profile-walking">
+        <label for="mapbox-directions-profile-walking">Walking</label>
+    </span><!-- <span>
+    <input type="radio" name="profile" id="mapbox-directions-profile-cycling">
+    <label for="mapbox-directions-profile-cycling">Cycling
+    </label> -->
+</span>
+</div>
+</form>
+</div>
+
 <script type="text/javascript">
         $('#directions').hide();
 
@@ -225,24 +259,24 @@ map.attributionControl.setPosition('bottomleft');
 
 // create the initial directions object, from which the layer
 // and inputs will pull data.
-var directions = L.mapbox.directions({
-    profile: 'mapbox.walking'
-});
-console.log(directions);
-var directionsLayer = L.mapbox.directions.layer(directions)
-    .addTo(map);
+// var directions = L.mapbox.directions({
+//     profile: 'mapbox.walking'
+// });
+// console.log(directions);
+// var directionsLayer = L.mapbox.directions.layer(directions)
+//     .addTo(map);
 
-var directionsInputControl = L.mapbox.directions.inputControl('inputs', directions)
-    .addTo(map);
+// var directionsInputControl = L.mapbox.directions.inputControl('inputs', directions)
+//     .addTo(map);
 
-var directionsErrorsControl = L.mapbox.directions.errorsControl('errors', directions)
-    .addTo(map);
+// var directionsErrorsControl = L.mapbox.directions.errorsControl('errors', directions)
+//     .addTo(map);
 
-var directionsRoutesControl = L.mapbox.directions.routesControl('routes', directions)
-    .addTo(map);
+// var directionsRoutesControl = L.mapbox.directions.routesControl('routes', directions)
+//     .addTo(map);
 
-var directionsInstructionsControl = L.mapbox.directions.instructionsControl('instructions', directions)
-    .addTo(map);
+// var directionsInstructionsControl = L.mapbox.directions.instructionsControl('instructions', directions)
+//     .addTo(map);
 
 </script>
 </body>
