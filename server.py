@@ -5,6 +5,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
+import geojson
 
 from model import User, Contact, Route, connect_to_db, db
 from random import choice
@@ -18,6 +19,8 @@ app.secret_key = "ABC"
 # This is horrible. Fix this so that, instead, it raises an error.
 app.jinja_env.undefined = StrictUndefined
 
+# Mapbox Access Token
+MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiYW1tZXVyZXIiLCJhIjoiMjg1M2JlM2QwMmE2NjIzZjJmODRjYWM1NDRjODg5YWEifQ.SZQ4FO0OqKTTE4tiv4Au4A'
 
 @app.route('/')
 def index():
@@ -105,8 +108,32 @@ def process_logout():
 
 @app.route('/get-route')
 def get_data():
-    return requests.get('http://127.0.0.1:5000/viaroute?loc=37.750499,-122.438275&loc=37.747207,-122.444755&instructions=true').content
-#
+	origin = request.args.get('start').replace(' ', '+')
+	dest = request.args.get('dest').replace(' ', '+')
+
+	origin_lat, origin_lon = process_geojson(origin)
+	dest_lat, dest_lon = process_geojson(dest)
+
+	return requests.get('http://127.0.0.1:5000/viaroute?loc=' + str(origin_lat) + ',' + str(origin_lon) +'&loc=' + str(dest_lat) + ',' + str(dest_lon) + '&instructions=true').content
+
+def process_geojson(location):
+	decode_loc = requests.get('https://api.mapbox.com/v4/geocode/mapbox.places/'+ location + '.json?access_token=' + MAPBOX_ACCESS_TOKEN).content
+	# Returns a FeatureCollection geojson object of all possible geocoding results for the address
+	print "***************", decode_loc
+
+	features = geojson.loads(decode_loc)['features']
+	# Find the GeoJson feature that is located in San Francisco
+	for feature in features:
+		print "**************", feature
+		if 'San Francisco,' in feature['place_name']:
+			lon, lat = feature['center']
+			print "****************", lat, lon
+			return (lat, lon)
+	# TODO: Return something to indicate that the forward geocoding failed
+	# print "****************", lat, lon
+	# return (0, 0)
+
+
 # @app.route('/users/<int:user_id>')
 # def display_user_details(user_id):
 # 	display_user = User.query.get(user_id)

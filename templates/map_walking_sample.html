@@ -23,10 +23,12 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" id='navigation'>
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" id='nav-title' href="/">
-        There and Back Again
+      <a class="navbar-brand" href="/">
+        <img id="logo" src="static/walking_gold_big.png">
       </a>
+      <a href="/" id='nav-title' class='navbar-text navbar-left'>There and Back Again</a>
     </div>
+
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
         <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
@@ -198,22 +200,60 @@
     </div>
   </div>
 </div>
+
+<div class="leaflet-control-container">
+  <div class="leaflet-top leaflet-left">
+    <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+      <a class="leaflet-control-zoom-in" href="#" title="Zoom in">+</a>
+      <a class="leaflet-control-zoom-out" href="#" title="Zoom out">-</a>
+    </div>
+    <div class="leaflet-control-mapbox-geocoder leaflet-bar leaflet-control active">
+      <a class="leaflet-control-mapbox-geocoder-toggle mapbox-icon mapbox-icon-geocoder" href="#">&nbsp;</a>
+      <div class="leaflet-control-mapbox-geocoder-results">
+      </div><div class="leaflet-control-mapbox-geocoder-wrap">
+      <form class="leaflet-control-mapbox-geocoder-form">
+        <input class="" type="text" placeholder="Search">
+      </form>
+    </div>
+  </div>
+</div>
+<div class="leaflet-top leaflet-right">
+  <div class="leaflet-control-grid map-tooltip leaflet-control" style="display: none;">
+    <a class="close" href="#" title="close">close</a>
+    <div class="map-tooltip-content">
+    </div>
+  </div>
+</div>
+<div class="leaflet-bottom leaflet-left">
+  <div class="mapbox-logo leaflet-control mapbox-logo-true">
+  </div>
+</div>
+<div class="leaflet-bottom leaflet-right">
+  <div class="map-legends wax-legends leaflet-control" style="display: none;">
+  </div>
+ 
+</div>
+</div>
+
 <div id="inputs" class="mapbox-directions-inputs">
-    <form>
+    <form class='leaflet-control-mapbox-geocoder-form'action='/get-route'>
         <div class="mapbox-directions-origin">
         <!--     <label class="mapbox-form-label">
                 <span class="mapbox-directions-icon mapbox-depart-icon"></span>
             </label> -->
-            <input type="text" required="required" id="mapbox-directions-origin-input" placeholder="Start">
+            <input type="text" required="required" id="mapbox-directions-origin-input" placeholder="Start" name='start'>
             <div class="mapbox-directions-icon mapbox-close-icon" title="Clear value">
             </div>
         </div>
         <span class="mapbox-directions-icon mapbox-reverse-icon mapbox-directions-reverse-input" title="Reverse origin &amp; destination"></span>
+
+       
+
         <div class="mapbox-directions-destination">
             <!-- <label class="mapbox-form-label">
                 <span class="mapbox-directions-icon mapbox-arrive-icon"></span>
             </label> -->
-            <input type="text" required="required" id="mapbox-directions-destination-input" placeholder="End">
+            <input type="text" required="required" id="mapbox-directions-destination-input" placeholder="End" name='dest'>
             <div class="mapbox-directions-icon mapbox-close-icon" title="Clear value">
             </div>
         </div>
@@ -223,12 +263,15 @@
             </label>
         </span><span><input type="radio" name="profile" id="mapbox-directions-profile-walking">
         <label for="mapbox-directions-profile-walking">Walking</label>
-    </span><!-- <span>
-    <input type="radio" name="profile" id="mapbox-directions-profile-cycling">
-    <label for="mapbox-directions-profile-cycling">Cycling
-    </label> -->
+    </span><span>
+<!--     <input type="radio" name="profile" id="mapbox-directions-profile-cycling">
+ -->    <label for="submit-route">
+     <input type='submit' name='route' id='submit-route'>
+
+    </label>
 </span>
-</div>
+<!--     <input type='submit' name='Find a Path'>
+ --></div>
 </form>
 </div>
 
@@ -256,6 +299,18 @@ var map = L.mapbox.map('map', 'ammeurer.5d704af1', {
 
 // move the attribution control out of the way
 map.attributionControl.setPosition('bottomleft');
+
+var gc = L.mapbox.geocoderControl('mapbox.places', {
+  autocomplete: true
+});
+
+gc.on('select', function(e) {
+  console.log(e);
+});
+    map.addControl(gc);
+
+
+
 
 // create the initial directions object, from which the layer
 // and inputs will pull data.

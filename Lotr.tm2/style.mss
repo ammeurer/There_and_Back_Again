@@ -14,12 +14,13 @@ Map {
 #water {
   // The ::dark and ::light attachments create a subtle inner-
   // shadow on water bodies for added contrast.
-  ::dark { polygon-fill: #aaa; }
+  ::dark { polygon-fill: #aaa; polygon-opacity: 0.5; }
   ::light14[zoom<=14],
   ::light15[zoom=15],
   ::light16[zoom=16],
   ::light17[zoom>=17] {
-    polygon-fill: #EAFAFA   ;
+    polygon-fill: rgba(234,250,250, 0.3);
+    
     
     polygon-gamma: 0.5;
     image-filters: agg-stack-blur(8,8);
@@ -32,7 +33,7 @@ Map {
   ::texture {
     comp-op: multiply;
     polygon-pattern-alignment: global;
-   polygon-pattern-file:url(img/shade_dark.png);
+   polygon-pattern-file:url(img/shade_light.png);
         polygon-pattern-opacity: 0.7;
 
   }
