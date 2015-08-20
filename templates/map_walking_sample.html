@@ -30,6 +30,7 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
     <ul class="nav navbar-nav navbar-right">
         <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li> -->
@@ -62,9 +63,18 @@
         {% endif %}
 <!--         <li class='active navbar-text navbar-right'>{{ quote }}</li>
  -->      </ul>
+
+   <form id='route-form' class="navbar-form navbar-right">
+  
+            <input type="text" required="required" id="origin" placeholder="Start" name='start'>
+  
+            <input type="text" required="required" id="destination" placeholder="End" name='dest'>
+       
+     <input type='button' name='route' id='submit-route'>
+
+</form>
   </div>
-<!--         <div id='inputs'></div>
- --><!--      <a id='nav-title' class="navbar-text navbar-left" href="/"><h3>There and Back Again</h3></a> -->
+
   </div>
 </nav>
     <div id='map'></div>
@@ -235,62 +245,47 @@
 </div>
 </div>
 
-<div id="inputs" class="mapbox-directions-inputs">
-    <form class='leaflet-control-mapbox-geocoder-form'action='/get-route'>
-        <div class="mapbox-directions-origin">
+<!-- <div id="inputs" class="mapbox-directions-inputs">
+    <form id='route-form'> -->
+  <!--       <div class="mapbox-directions-origin"> -->
         <!--     <label class="mapbox-form-label">
                 <span class="mapbox-directions-icon mapbox-depart-icon"></span>
             </label> -->
-            <input type="text" required="required" id="mapbox-directions-origin-input" placeholder="Start" name='start'>
-            <div class="mapbox-directions-icon mapbox-close-icon" title="Clear value">
-            </div>
-        </div>
-        <span class="mapbox-directions-icon mapbox-reverse-icon mapbox-directions-reverse-input" title="Reverse origin &amp; destination"></span>
+            <!-- <input type="text" required="required" id="origin" placeholder="Start" name='start'> -->
+   <!--          <div class="mapbox-directions-icon mapbox-close-icon" title="Clear value">
+            </div> -->
+  <!--       </div> -->
+ <!--        <span class="mapbox-directions-icon mapbox-reverse-icon mapbox-directions-reverse-input" title="Reverse origin &amp; destination"></span> -->
 
        
 
-        <div class="mapbox-directions-destination">
-            <!-- <label class="mapbox-form-label">
+   <!--      
+            <label class="mapbox-form-label">
                 <span class="mapbox-directions-icon mapbox-arrive-icon"></span>
-            </label> -->
-            <input type="text" required="required" id="mapbox-directions-destination-input" placeholder="End" name='dest'>
-            <div class="mapbox-directions-icon mapbox-close-icon" title="Clear value">
-            </div>
-        </div>
-        <div class="mapbox-directions-profile"><span>
+            </label>
+            <input type="text" required="required" id="destination" placeholder="End" name='dest'>
+          -->
+      <!-- <span>
             <input type="radio" name="profile" id="mapbox-directions-profile-driving">
             <label for="mapbox-directions-profile-driving">Driving
             </label>
         </span><span><input type="radio" name="profile" id="mapbox-directions-profile-walking">
         <label for="mapbox-directions-profile-walking">Walking</label>
-    </span><span>
+    </span><span> -->
 <!--     <input type="radio" name="profile" id="mapbox-directions-profile-cycling">
- -->    <label for="submit-route">
-     <input type='submit' name='route' id='submit-route'>
+ -->   <!-- <label>Find a Path
+     <input type='button' name='route' id='submit-route'>
 
     </label>
 </span>
-<!--     <input type='submit' name='Find a Path'>
- --></div>
+     <input type='submit' name='Find a Path'>
+ --><!-- </div>
 </form>
-</div>
-
-<script type="text/javascript">
-        $('#directions').hide();
-
-    $('#signup').click(function(){
-        $('#signupModal').modal('show');
-    });
-
-    $('#login').click(function(){
-        $('#loginModal').modal('show');
-    });
-    $('#inputs').submit(function(){
-        $('#directions').show();
-    });
+</div> --> 
+<script src="static/polyline.js"></script>
 
 
-</script>
+
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiYW1tZXVyZXIiLCJhIjoiMjg1M2JlM2QwMmE2NjIzZjJmODRjYWM1NDRjODg5YWEifQ.SZQ4FO0OqKTTE4tiv4Au4A';
 var map = L.mapbox.map('map', 'ammeurer.5d704af1', {
@@ -307,8 +302,42 @@ var gc = L.mapbox.geocoderControl('mapbox.places', {
 gc.on('select', function(e) {
   console.log(e);
 });
-    map.addControl(gc);
 
+map.addControl(gc);
+
+
+
+  $('#directions').hide();
+
+  $('#signup').click(function(){
+      $('#signupModal').modal('show');
+  });
+
+  $('#login').click(function(){
+      $('#loginModal').modal('show');
+  });
+  $('#inputs').submit(function(){
+      $('#directions').show();
+  });
+
+var polyline_options = {
+    color: 'red'
+};
+
+  $('#submit-route').on('click', function() {
+    $.get(
+      "/get-route",
+      $("#route-form").serialize(),
+      function (result) {
+        var parsedOSRM = JSON.parse(result);
+        console.log(parsedOSRM);
+        polyline_ll_array = polyline.decode(parsedOSRM.route_geometry, 6);
+        console.log(polyline_ll_array);
+        L.polyline(polyline_ll_array, polyline_options).addTo(map);
+
+
+      });
+  });
 
 
 

@@ -2,7 +2,7 @@
 
 from jinja2 import StrictUndefined
 
-from flask import Flask, render_template, redirect, request, flash, session
+from flask import Flask, render_template, jsonify, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
 import geojson
@@ -114,7 +114,10 @@ def get_data():
 	origin_lat, origin_lon = process_geojson(origin)
 	dest_lat, dest_lon = process_geojson(dest)
 
-	return requests.get('http://127.0.0.1:5000/viaroute?loc=' + str(origin_lat) + ',' + str(origin_lon) +'&loc=' + str(dest_lat) + ',' + str(dest_lon) + '&instructions=true').content
+	return requests.get('http://127.0.0.1:5000/viaroute?loc=' + str(origin_lat) + ',' + str(origin_lon) +'&loc=' + str(dest_lat) + ',' 
+		+ str(dest_lon) + '&instructions=true').content
+
+	 
 
 def process_geojson(location):
 	decode_loc = requests.get('https://api.mapbox.com/v4/geocode/mapbox.places/'+ location + '.json?access_token=' + MAPBOX_ACCESS_TOKEN).content
