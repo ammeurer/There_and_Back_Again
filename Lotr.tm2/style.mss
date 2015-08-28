@@ -33,7 +33,7 @@ Map {
   ::texture {
     comp-op: multiply;
     polygon-pattern-alignment: global;
-   polygon-pattern-file:url(img/shade_light.png);
+   polygon-pattern-file:url(img/water.png);
         polygon-pattern-opacity: 0.7;
 
   }

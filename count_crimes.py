@@ -113,7 +113,35 @@ def format_ascii_grid(crime_density_dict):
 		ascii_ll_grid_fh.write(' ')
 		count_col += 1
 
-crime_dict = create_crime_density_grid(lonlat_list)
+	ascii_density_grid_fh.close()
+	ascii_ll_grid_fh.close()
+
+def get_avg_crime_density_sf(ascii_density_grid):
+	fh = open(ascii_density_grid)
+	sum = 0
+	num_counted = 0
+	max = 0
+	min = 10
+	for line in fh: 
+		tokens = line.split()
+		for density in tokens:
+			density = int(density)
+			# if density > 0:
+			num_counted += 1
+			sum += density
+			if density > max:
+				max = density
+			if density < min:
+				min = density
+	avg = sum/num_counted
+	print "Average crime density in SF (for places with a non-zero crime count) is", avg
+	print "The max crime density is", max
+	print "The min crime densicty is", min
+	return avg
+
+
+
+# crime_dict = create_crime_density_grid(lonlat_list)
 
 
 # test_dict = {
@@ -122,6 +150,6 @@ crime_dict = create_crime_density_grid(lonlat_list)
 # 	(34.907, -123.589): 2,
 # 	(37.723, -120.3): 1
 # }
-format_ascii_grid(crime_dict)
-
+# format_ascii_grid(crime_dict)
+get_avg_crime_density_sf("ascii_density_grid.asc")
 

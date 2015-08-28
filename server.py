@@ -2,12 +2,12 @@
 
 from jinja2 import StrictUndefined
 
-from flask import Flask, render_template, jsonify, redirect, request, flash, session
+from flask import Flask, render_template, jsonify, redirect, request, flash, session, json
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
 import geojson
 
-from model import User, Contact, Route, connect_to_db, db
+from model import User, Contact, Route, CrimePoints, connect_to_db, db
 from random import choice
 
 app = Flask(__name__)
@@ -113,13 +113,50 @@ def get_data():
 
 	origin_lat, origin_lon = process_geojson(origin)
 	dest_lat, dest_lon = process_geojson(dest)
-
-	return requests.get('http://127.0.0.1:5000/viaroute?loc=' + str(origin_lat) + ',' + str(origin_lon) +'&loc=' + str(dest_lat) + ',' 
+	resp = requests.get('http://127.0.0.1:5000/viaroute?loc=' + str(origin_lat) + ',' + str(origin_lon) +'&loc=' + str(dest_lat) + ',' 
 		+ str(dest_lon) + '&instructions=true').content
+	via_pts = json.load(resp).via_indices
+	print "************ Via points", via_pts
+	density_list = []
+	for ll in range(1, via_pts):
+		start = via_pts[ll-1]
+		end = via_pts[ll]
+		leg_ct = CrimePoints.count_crimes_on_leg(start[0], start[1], end[0], end[1])
+		density_list.append(leg_ct)
+	print "************* Density list", density_list
+	return resp
 
-	 
+@app.route('/get-mb-route')
+def get_mb_data():
+	print "************", "Got into /get-mb-route"
+	origin = request.args.get('start').replace(' ', '+')
+	dest = request.args.get('dest').replace(' ', '+')
+
+	origin_lat, origin_lon = process_geojson(origin)
+	dest_lat, dest_lon = process_geojson(dest)
+	# resp = requests.get('https://api.mapbox.com/v4/directions/mapbox.walking/' 
+	# 	+ str(origin_lon) +','+ str(origin_lat) + ';' + str(dest_lon) + ','+ str(dest_lat) +'.json?' + 'geometry=polyline' 
+	# 	+ '?' +'access_token=' + MAPBOX_ACCESS_TOKEN)
+	resp = requests.get('https://api.mapbox.com/v4/directions/mapbox.walking/' 
+	 	+ str(origin_lon) +','+ str(origin_lat) + ';' + str(dest_lon) + ','+ str(dest_lat)
+	 	 +'.json?geometry=polyline&alternatives=false&access_token=' + MAPBOX_ACCESS_TOKEN).content
+
+	#https://api.tiles.mapbox.com/v4/directions/{profile}/{waypoints}.json?instructions=html&geometry=polyline&access_token={token}
+	print "**********", resp
+	return resp
+
+
+@app.route('/get-crime-ll')
+def get_ll():
+	crime_ll_list = []
+	fh = open('crime_ll')
+	for line in fh:
+		lat, lon = line.split()
+		crime_ll_list.append((float(lat),float(lon)))
+	return json.dumps(crime_ll_list)
 
 def process_geojson(location):
+	print "************", "got into process_geojson"
 	decode_loc = requests.get('https://api.mapbox.com/v4/geocode/mapbox.places/'+ location + '.json?access_token=' + MAPBOX_ACCESS_TOKEN).content
 	# Returns a FeatureCollection geojson object of all possible geocoding results for the address
 	print "***************", decode_loc

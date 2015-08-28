@@ -126,7 +126,7 @@
 
 <Style name="water-texture" filter-mode="first" comp-op="multiply">
   <Rule>
-    <PolygonPatternSymbolizer alignment="global" file="img/shade_light.png" opacity="0.7" />
+    <PolygonPatternSymbolizer alignment="global" file="img/water.png" opacity="0.7" />
   </Rule>
 </Style>
 <Style name="water-light17" filter-mode="first" image-filters="agg-stack-blur(64,64),agg-stack-blur(8,8)" image-filters-inflate="true">

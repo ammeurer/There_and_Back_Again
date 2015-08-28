@@ -2,6 +2,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
 import sqlite3
+from geoalchemy2 import Geography
 
 # This is the connection to the SQLite database; we're getting this through
 # the Flask-SQLAlchemy helper library. On this, we can find the `session`
@@ -90,6 +91,46 @@ class Contact(db.Model):
                             backref=db.backref("contacts", order_by=contact_id))
 
 
+class CrimePoints(db.Model):
+    """ Latitude and longitudes of crime reports stored as Geography Points """
+
+    __tablename__ = 'crime'
+
+    crime_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    crime_pt = db.Column(Geography(geometry_type='POINT', srid=4326))
+
+    def __repr__(self):
+        return "<Crime crime_id=%s crime_pt=%s" % (self.crime_id, self.crime_pt)
+# def count_crimes_on_leg(cls, origin_lat, origin_lon, dest_lat, dest_lon):
+    @classmethod
+    def count_crimes_on_leg(cls, origin_lat, origin_lon, dest_lat, dest_lon):
+      
+        linestring = 'LINESTRING('+origin_lon+' '+origin_lat+','+dest_lon+' '+dest_lat+')'
+        query = db.session.query(cls).filter(cls.crime_pt.ST_Intersects(linestring)).all()
+        return len(query)
+
+    @classmethod
+    def add_new_pt(cls, lat, lon):
+        pt = 'POINT('+lon+' '+lat+')'
+        new_pt = cls(crime_pt=pt)
+        print pt
+        db.session.add(new_pt)
+
+    @classmethod
+    def seed_pts(cls):
+        # fh = open('crime_ll')
+        # Initialize list that will hold all the longitudes and latitudes
+        lonlat_list = []
+        # Open and parse lat and lon tuples from seed file
+        with open('crime_ll', 'r') as seed_fh:
+            for line in seed_fh:
+                lat, lon = line.split()
+                cls.add_new_pt(lat, lon)
+                # lonlat_list.append((lon, lat))
+        # print lonlat_list  
+        db.session.commit() 
+        seed_fh.close() 
+
     # def update_rating(self, new_rating):
     #     self.score = new_rating
     #     db.session.commit()
@@ -123,11 +164,11 @@ class Contact(db.Model):
     #     rating_list = db.session.query(cls).filter(cls.movie_id == movie_id).all()
     #     return rating_list
 
-    def __repr__(self):
-        """Provide helpful representation when printed."""
+    # def __repr__(self):
+    #     """Provide helpful representation when printed."""
 
-        return "<Contact contact_id = %s user_id=%s contact_name=%s \
-        phone_number=%s>" % (self.contact_id, self.user_id, self.contact_name, self.phone_number)
+    #     return "<Contact contact_id = %s user_id=%s contact_name=%s \
+    #     phone_number=%s>" % (self.contact_id, self.user_id, self.contact_name, self.phone_number)
 
 ##############################################################################
 # Helper functions

@@ -4,7 +4,12 @@
         <meta charset=utf-8 />
         <title>There and Back Again</title>
         <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-        <!-- Latest compiled and minified CSS -->
+       
+        <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+        <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+<!--          // <script src='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.js'></script> -->
+        <!-- <link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.css' type='text/css' /> -->
+         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
         <!-- jQuery library -->
@@ -12,12 +17,7 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-        <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
-        <script src='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.js'></script>
-        <link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.css' type='text/css' />
-<!--         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
- -->        <link rel="stylesheet" type="text/css" href="static/style.css">
+        <link rel="stylesheet" type="text/css" href="static/style.css">
     </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" id='navigation'>
@@ -31,9 +31,8 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-    <ul class="nav navbar-nav navbar-right">
-        <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li> -->
+    <ul id='user-drop' class="nav navbar-nav navbar-right">
+   
         {% if user %}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.user_name }}<span class="caret"></span></a>
@@ -43,8 +42,7 @@
             <li role="separator" class="divider"></li>
             <li id='saved-routes'><a href="#">Your Saved Walks</a></li>
             <li id='route'><a href="#">Plan a journey</a></li>
-<!--             <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li> -->
+
           </ul>
         </li>
         {% else %}
@@ -56,33 +54,35 @@
             <li id='signup'><a href="#">Sign up</a></li>
             <li role="separator" class="divider"></li>
             <li id='route'><a href="#">Plan a journey</a></li>
-<!--             <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li> -->
+
           </ul>
         </li>
         {% endif %}
-<!--         <li class='active navbar-text navbar-right'>{{ quote }}</li>
- -->      </ul>
+    </ul>
 
-   <form id='route-form' class="navbar-form navbar-right">
   
-            <input type="text" required="required" id="origin" placeholder="Start" name='start'>
+   <form id='route-form' class="navbar-form navbar-right" autocomplete='off'>
+      
+        <input type="text" required="required" id="origin" placeholder="Begin" name='start'>
+        <input type="text" required="required" id="destination" placeholder="End" name='dest'>
+        
+        <a id='submit-route'>Find a Path</a>
+  </form>
   
-            <input type="text" required="required" id="destination" placeholder="End" name='dest'>
-       
-     <input type='button' name='route' id='submit-route'>
-
-</form>
-  </div>
 
   </div>
 </nav>
     <div id='map'></div>
-    <div id='inputs'></div>
-   <div id='errors'></div>
-    <div id='directions'>
+    <!-- <div id='inputs'></div> -->
+   <!-- <div id='errors'></div> -->
+    <div class='col-md-3' id='directions'>
       <div id='routes'></div>
-      <div id='instructions'></div>
+      <div id='instructions'>
+        <button id="add-heat_btn" name="add-heat" class="btn btn-primary">See Crime</button>
+        <button id='compare-btn' name="compare-routes" class="btn btn-primary">Compare Routes</button>
+        <ul>
+        </ul>
+      </div>
     </div>
 
 
@@ -145,8 +145,6 @@
                 ...
       </div>
       <div class="modal-footer">
-<!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
@@ -166,11 +164,7 @@
         <form class="form-horizontal" action="/login" method='post'>
     <fieldset>
 
-        <!-- Form Name -->
-<!--         <legend>Sign up to save your favorite walks, and customize alerts to family and friends.</legend>
- -->
-
-
+ 
 
         <!-- Text input-->
         <div class="form-group">
@@ -204,110 +198,41 @@
                 ...
       </div>
       <div class="modal-footer">
-<!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button> -->
+
       </div>
     </div>
   </div>
 </div>
 
-<div class="leaflet-control-container">
-  <div class="leaflet-top leaflet-left">
-    <div class="leaflet-control-zoom leaflet-bar leaflet-control">
-      <a class="leaflet-control-zoom-in" href="#" title="Zoom in">+</a>
-      <a class="leaflet-control-zoom-out" href="#" title="Zoom out">-</a>
-    </div>
-    <div class="leaflet-control-mapbox-geocoder leaflet-bar leaflet-control active">
-      <a class="leaflet-control-mapbox-geocoder-toggle mapbox-icon mapbox-icon-geocoder" href="#">&nbsp;</a>
-      <div class="leaflet-control-mapbox-geocoder-results">
-      </div><div class="leaflet-control-mapbox-geocoder-wrap">
-      <form class="leaflet-control-mapbox-geocoder-form">
-        <input class="" type="text" placeholder="Search">
-      </form>
-    </div>
-  </div>
-</div>
-<div class="leaflet-top leaflet-right">
-  <div class="leaflet-control-grid map-tooltip leaflet-control" style="display: none;">
-    <a class="close" href="#" title="close">close</a>
-    <div class="map-tooltip-content">
-    </div>
-  </div>
-</div>
-<div class="leaflet-bottom leaflet-left">
-  <div class="mapbox-logo leaflet-control mapbox-logo-true">
-  </div>
-</div>
-<div class="leaflet-bottom leaflet-right">
-  <div class="map-legends wax-legends leaflet-control" style="display: none;">
-  </div>
- 
-</div>
-</div>
 
-<!-- <div id="inputs" class="mapbox-directions-inputs">
-    <form id='route-form'> -->
-  <!--       <div class="mapbox-directions-origin"> -->
-        <!--     <label class="mapbox-form-label">
-                <span class="mapbox-directions-icon mapbox-depart-icon"></span>
-            </label> -->
-            <!-- <input type="text" required="required" id="origin" placeholder="Start" name='start'> -->
-   <!--          <div class="mapbox-directions-icon mapbox-close-icon" title="Clear value">
-            </div> -->
-  <!--       </div> -->
- <!--        <span class="mapbox-directions-icon mapbox-reverse-icon mapbox-directions-reverse-input" title="Reverse origin &amp; destination"></span> -->
-
-       
-
-   <!--      
-            <label class="mapbox-form-label">
-                <span class="mapbox-directions-icon mapbox-arrive-icon"></span>
-            </label>
-            <input type="text" required="required" id="destination" placeholder="End" name='dest'>
-          -->
-      <!-- <span>
-            <input type="radio" name="profile" id="mapbox-directions-profile-driving">
-            <label for="mapbox-directions-profile-driving">Driving
-            </label>
-        </span><span><input type="radio" name="profile" id="mapbox-directions-profile-walking">
-        <label for="mapbox-directions-profile-walking">Walking</label>
-    </span><span> -->
-<!--     <input type="radio" name="profile" id="mapbox-directions-profile-cycling">
- -->   <!-- <label>Find a Path
-     <input type='button' name='route' id='submit-route'>
-
-    </label>
-</span>
-     <input type='submit' name='Find a Path'>
- --><!-- </div>
-</form>
-</div> --> 
 <script src="static/polyline.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
 
 
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiYW1tZXVyZXIiLCJhIjoiMjg1M2JlM2QwMmE2NjIzZjJmODRjYWM1NDRjODg5YWEifQ.SZQ4FO0OqKTTE4tiv4Au4A';
 var map = L.mapbox.map('map', 'ammeurer.5d704af1', {
-    zoomControl: true
+    zoomControl: false
 }).setView([37.78, -122.416], 13);
 
 // move the attribution control out of the way
 map.attributionControl.setPosition('bottomleft');
 
-var gc = L.mapbox.geocoderControl('mapbox.places', {
-  autocomplete: true
-});
-
-gc.on('select', function(e) {
-  console.log(e);
-});
-
-map.addControl(gc);
 
 
+// gc.on('select', function(e) {
+//   console.log(e);
+// });
 
-  $('#directions').hide();
+// map.addControl(gc);
+
+// map.addControl(L.mapbox.geocoderControl('mapbox.places', {
+//         autocomplete: true
+//     }));
+
+  // $('#directions').hide();
 
   $('#signup').click(function(){
       $('#signupModal').modal('show');
@@ -316,15 +241,21 @@ map.addControl(gc);
   $('#login').click(function(){
       $('#loginModal').modal('show');
   });
-  $('#inputs').submit(function(){
-      $('#directions').show();
-  });
+  // $('#inputs').submit(function(){
+  //     $('#directions').show();
+  // });
 
-var polyline_options = {
-    color: 'red'
-};
 
-  $('#submit-route').on('click', function() {
+  var pl = null;  
+  var pl_mb = null;
+
+  $('#submit-route').click(function() {
+
+    if(pl !== null){
+      map.removeLayer(pl);
+      $('#directions').slideUp(200);
+      $('#instructions li').remove();
+    } 
     $.get(
       "/get-route",
       $("#route-form").serialize(),
@@ -333,12 +264,132 @@ var polyline_options = {
         console.log(parsedOSRM);
         polyline_ll_array = polyline.decode(parsedOSRM.route_geometry, 6);
         console.log(polyline_ll_array);
-        L.polyline(polyline_ll_array, polyline_options).addTo(map);
+        var polyline_options = {
+          color: 'red'
+        };
+        pl = L.polyline(polyline_ll_array, polyline_options);
+        pl.addTo(map);
 
+        var instructions = parsedOSRM.route_instructions
+        for(var i = 0; i < instructions.length; i++){
+          var instruct = "<li>"  + instructions[i][1] + " " + "" + instructions[i][6] +"</li>";
+          $('#instructions ul').append(instruct);
+        }
+        var route_name = "<h4>" + parsedOSRM.route_name[0] + "</h4>";
+        $('#routes').add(route_name);
+        $('#directions').slideDown(300);
+        // $.get(
+        //   '/get-leg-counts',
+        //   parsedOSRM.via_indices,
+        //   function()
+        //   )
 
       });
+
   });
 
+$('#submit-route').click(function() {
+    console.log("got into click");
+    if(pl_mb !== null){
+      map.removeLayer(pl_mb);
+      //$('#directions').slideUp(200);
+      //$('#instructions li').remove();
+    } 
+    $.get(
+      "/get-mb-route",
+      $("#route-form").serialize(),
+      function (result) {
+        console.log(result);
+        var parsedMB = JSON.parse(result);
+        console.log(parsedMB);
+        console.log(parsedMB.routes[0].geometry);
+        console.log(parsedMB.routes);
+        polyline_ll_array = polyline.decode(parsedMB.routes[0].geometry, 6);
+        console.log(polyline_ll_array);
+        var polyline_options = {
+          color: 'blue'
+        };
+        pl_mb = L.polyline(polyline_ll_array, polyline_options);
+        pl_mb.addTo(map);
+
+        //var instructions = parsedOSRM.route_instructions
+        // for(var i = 0; i < instructions.length; i++){
+        //   var instruct = "<li>"  + instructions[i][1] + " " + "" + instructions[i][6] +"</li>";
+        //   $('#instructions ul').append(instruct);
+        // }
+        //var route_name = "<h4>" + parsedOSRM.route_name[0] + "</h4>";
+        //$('#routes').add(route_name);
+        //$('#directions').slideDown(300);
+
+      });
+
+  });
+
+  // $('#origin').on('change', function(){
+  //   $('#directions').slideUp(300);
+  //   $('#instructions li').remove();
+  //   map.removeLayer(pl);
+  // });
+  // $('#destination').on('change', function(){
+  //   $('#directions').slideUp(300);
+  //   $('#steps li').remove();
+  //   map.removeLayer(pl);
+
+  // });
+  var heat = L.heatLayer([], {    //define heat layer options
+        maxOpacity: 0.4, 
+        minOpacity: 0.1,
+        radius: 8,
+        blur: 15, 
+        maxZoom: 16,
+        // max: 0
+        // opacity: 0
+        // gradient : {1 : 'blue'}
+    });
+
+  var toggle_heat = false;
+    $("#add-heat_btn").click(function(){
+if (toggle_heat == false){
+    // Add all my points to the heat map
+    $.get('/get-crime-ll',
+      function(ll){
+        var llList = JSON.parse(ll);
+        for (var i = 0; i < 100000; i++){
+          heat.addLatLng(llList[i]);
+          console.log(llList[i]);
+        }
+      });
+      
+        heat.addTo(map);
+        $('#add-heat_btn').text("Hide heat");
+        toggle_heat = true;
+      }
+      else{
+        map.removeLayer(heat);
+        $('#add-heat_btn').text("Show heat");
+        toggle_heat = false
+      }
+
+    });
+
+  
+    var defaultBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(37.697965, -122.528500),
+      new google.maps.LatLng(37.822694, -122.355458));
+
+  var origin = document.getElementById('origin');
+  var destination = document.getElementById('destination');
+  var options = {
+    bounds: defaultBounds,
+    types: ['address'] 
+  };
+
+  var autocomplete_origin = new google.maps.places.Autocomplete(origin, options);
+  var autocomplete_dest = new google.maps.places.Autocomplete(destination, options);
+  // var place_origin = autocomplete_origin.getPlace();
+  // var place_dest = autocomplete_dest.getPlace();
+
+  
 
 
 // create the initial directions object, from which the layer
@@ -346,7 +397,7 @@ var polyline_options = {
 // var directions = L.mapbox.directions({
 //     profile: 'mapbox.walking'
 // });
-// console.log(directions);
+// // console.log(directions);
 // var directionsLayer = L.mapbox.directions.layer(directions)
 //     .addTo(map);
 
