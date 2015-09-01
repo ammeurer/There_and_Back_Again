@@ -38,10 +38,10 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.user_name }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li id=''><a href="/logout">Log out</a></li>
-            <li id='profile'><a href="#">Your Profile</a></li>
+            <!-- <li id='profile'><a href="#">Your Profile</a></li>
             <li role="separator" class="divider"></li>
             <li id='saved-routes'><a href="#">Your Saved Walks</a></li>
-            <li id='route'><a href="#">Plan a journey</a></li>
+            <li id='route'><a href="#">Plan a journey</a></li> -->
 
           </ul>
         </li>
@@ -51,9 +51,10 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome! <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li id='login'><a href="#">Log in</a></li>
-            <li id='signup'><a href="#">Sign up</a></li>
             <li role="separator" class="divider"></li>
-            <li id='route'><a href="#">Plan a journey</a></li>
+            <li id='signup'><a href="#">Sign up</a></li>
+           <!--  <li role="separator" class="divider"></li>
+            <li id='route'><a href="#">Plan a journey</a></li> -->
 
           </ul>
         </li>
@@ -75,13 +76,15 @@
     <div id='map'></div>
     <!-- <div id='inputs'></div> -->
    <!-- <div id='errors'></div> -->
-    <div class='col-md-3' id='directions'>
+    <div class='col-md-4' id='directions'>
       <div id='routes'></div>
       <div id='instructions'>
-        <button id="add-heat_btn" name="add-heat" class="btn btn-primary">See Crime</button>
-        <button id='compare-btn' name="compare-routes" class="btn btn-primary">Compare Routes</button>
+        <button id="add-heat_btn" name="add-heat" class="btn btn-primary">Heat Map</button>
+        <button id='compare-btn' name="compare-routes" class="btn btn-primary">Crime Density Graph</button>
         <ul>
         </ul>
+        <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+
       </div>
     </div>
 
@@ -142,7 +145,7 @@
         </fieldset>
         </form>
 
-                ...
+                
       </div>
       <div class="modal-footer">
       </div>
@@ -151,6 +154,25 @@
 </div>
 
 
+<!-- Chart Modal -->
+<div class="modal fade" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Crime Density Variation Along Path</h4>
+      </div>
+      <div class="modal-body">
+        <canvas id="safeRoute" width="800" height="400"></canvas>
+        <!-- <canvas id="regRoute" width="600" height="400"></canvas> -->
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Log in Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -195,7 +217,7 @@
         </fieldset>
         </form>
 
-                ...
+                
       </div>
       <div class="modal-footer">
 
@@ -206,6 +228,7 @@
 
 
 <script src="static/polyline.js"></script>
+<script src="static/Chart.js/Chart.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
 
@@ -213,15 +236,44 @@
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiYW1tZXVyZXIiLCJhIjoiMjg1M2JlM2QwMmE2NjIzZjJmODRjYWM1NDRjODg5YWEifQ.SZQ4FO0OqKTTE4tiv4Au4A';
+
+var southWest = L.latLng(37.697965, -122.528500),
+    northEast = L.latLng(37.822694, -122.355458),
+    bounds = L.latLngBounds(southWest, northEast);
 var map = L.mapbox.map('map', 'ammeurer.5d704af1', {
-    zoomControl: false
-}).setView([37.78, -122.416], 13);
+    zoomControl: false,
+    maxBounds: bounds
+  
+ }).setView([37.78, -122.416], 13);
 
 // move the attribution control out of the way
 map.attributionControl.setPosition('bottomleft');
 
 
-
+var turnCode = 
+{
+    0: "Continue straight on ",
+    1: "Continue straight on ",
+    2: "Turn slightly right onto ",
+    3: "Turn right onto ",
+    4: "Turn sharply right onto ",
+    5: "Take a U turn at",
+    6: "Turn sharply left onto ",
+    7: "Turn left onto ",
+    8: "Turn slightly left onto ",
+    9: "ReachViaLocation",
+    10: "Head staight on ",
+    11: "Enter the Round About",
+    12: "Leave the Round About",
+    13: "Stay On Round About",
+    14: "StartAtEndOfStreet",
+    15: "You have arrived at your destination!",
+    16: "EnterAgainstAllowedDirection",
+    17: "LeaveAgainstAllowedDirection",
+    127: "InverseAccessRestrictionFlag",
+    128: "AccessRestrictionFlag",
+    129: "AccessRestrictionPenalty"
+};
 // gc.on('select', function(e) {
 //   console.log(e);
 // });
@@ -244,11 +296,19 @@ map.attributionControl.setPosition('bottomleft');
   // $('#inputs').submit(function(){
   //     $('#directions').show();
   // });
-
+  var zoomBounds = function(maxLat, minLat, maxLon, minLon){
+    var sw = L.latLng(minLat, minLon);
+    var ne = L.latLng(maxLat, maxLon);
+    var newBounds = L.latLngBounds(sw, ne);
+    map.fitBounds(newBounds);
+  };
 
   var pl = null;  
   var pl_mb = null;
 
+  var maxLon, maxLat, minLon, minLat;
+  var polyline_ll_array = null;
+  var polyline_ll_array_mb = null;
   $('#submit-route').click(function() {
 
     if(pl !== null){
@@ -265,29 +325,87 @@ map.attributionControl.setPosition('bottomleft');
         polyline_ll_array = polyline.decode(parsedOSRM.route_geometry, 6);
         console.log(polyline_ll_array);
         var polyline_options = {
-          color: 'red'
+          color: '#D6AD33',
+          opacity: 0.9
         };
         pl = L.polyline(polyline_ll_array, polyline_options);
         pl.addTo(map);
-
+        maxLon, maxLat, minLon, minLat;
+        var via_pts = parsedOSRM.via_points;
+        if(via_pts[0][0] >= via_pts[1][0]){
+          maxLat = via_pts[0][0];
+          minLat = via_pts[1][0];
+        }else{
+          maxLat = via_pts[1][0];
+          minLat = via_pts[0][0];
+        }
+        if(via_pts[0][1] >= via_pts[1][1]){
+          maxLon = via_pts[0][1];
+          minLon = via_pts[1][1];
+        }else{
+          maxLon = via_pts[1][1];
+          minLon = via_pts[0][1];
+        }
+        zoomBounds(maxLat, minLat, maxLon, minLon);
         var instructions = parsedOSRM.route_instructions
+        // var route_name = "<h4>" + parsedOSRM.route_name[0] + "</h4>";
+        // $('#instructions').append(route_name);
         for(var i = 0; i < instructions.length; i++){
-          var instruct = "<li>"  + instructions[i][1] + " " + "" + instructions[i][6] +"</li>";
+          var instruct = "<li>"  + turnCode[instructions[i][0]] + " " + instructions[i][1]+"</li>";
           $('#instructions ul').append(instruct);
         }
-        var route_name = "<h4>" + parsedOSRM.route_name[0] + "</h4>";
-        $('#routes').add(route_name);
+        
         $('#directions').slideDown(300);
-        // $.get(
-        //   '/get-leg-counts',
-        //   parsedOSRM.via_indices,
-        //   function()
-        //   )
 
-      });
+
+       });
 
   });
+  var countDensity = function(){
+      // var datasets_value = [];
 
+      $.get(
+          '/get-leg-counts',
+          JSON.stringify(polyline_ll_array),
+          function(density_list){
+            id = '.modal-body #safeRoute';
+            densities = JSON.parse(density_list);
+            // datasets_value.push(densities);
+            // console.log(datasets_value);
+            // console.log(densities);
+            var sum= 0;
+            for(var i = 0; i<densities.length; i++){
+              sum += densities[i];
+            }
+            var avg = sum / densities.length;
+            console.log(avg);
+            createChart(densities, id);
+            $('#chartModal').modal('show');
+
+          });
+      // $.get(
+      //     '/get-leg-counts',
+      //     JSON.stringify(polyline_ll_array_mb),
+      //     function(density_list){
+      //       id = '.modal-body #regRoute';
+      //       densities = JSON.parse(density_list);
+      //       // datasets_value.push(densities);
+      //       // console.log(datasets_value);
+      //       // console.log(densities);
+      //       var sum= 0;
+      //       for(var i = 0; i<densities.length; i++){
+      //         sum += densities[i];
+      //       }
+      //       var avg = sum / densities.length;
+      //       console.log(avg);
+      //       createChart(densities, id);
+      //       $('#chartModal').modal('show');
+
+
+      //     });
+      
+
+  };
 $('#submit-route').click(function() {
     console.log("got into click");
     if(pl_mb !== null){
@@ -304,12 +422,13 @@ $('#submit-route').click(function() {
         console.log(parsedMB);
         console.log(parsedMB.routes[0].geometry);
         console.log(parsedMB.routes);
-        polyline_ll_array = polyline.decode(parsedMB.routes[0].geometry, 6);
-        console.log(polyline_ll_array);
+        polyline_ll_array_mb = polyline.decode(parsedMB.routes[0].geometry, 6);
+        console.log(polyline_ll_array_mb);
         var polyline_options = {
-          color: 'blue'
+          color: 'red',
+          opacity: 0.3
         };
-        pl_mb = L.polyline(polyline_ll_array, polyline_options);
+        pl_mb = L.polyline(polyline_ll_array_mb, polyline_options);
         pl_mb.addTo(map);
 
         //var instructions = parsedOSRM.route_instructions
@@ -324,7 +443,56 @@ $('#submit-route').click(function() {
       });
 
   });
+var createChart = function(datasets_value, id){
+  $('#chartModal').on('shown.bs.modal', function (event) {
 
+    // var button = $(event.relatedTarget);
+    var modal = $(this);
+    var canvas = modal.find(id);
+    var ctx = canvas[0].getContext("2d");
+
+  // var ctx = $("#myChart").get(0).getContext("2d");
+    console.log(datasets_value);
+    // console.log(datasets_value[0]);
+    // console.log(datasets_value[0].length);
+    // console.log(datasets_value[1].length);
+    label_list = [];
+    for(var i=0; i < datasets_value.length; i++){
+      label_list.push(' ');
+    }
+
+     var data = {
+            labels: label_list,
+            datasets: [
+              {
+                label: "Safe Route",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: datasets_value
+              }
+      
+
+            ]
+            };
+   
+            var myLineChart = new Chart(ctx).Line(data);
+            });
+
+};
+
+
+  $('#compare-btn').click(function(){
+    countDensity();
+  
+    // $('#chartModal').modal('show');
+
+
+  });
+  
   // $('#origin').on('change', function(){
   //   $('#directions').slideUp(300);
   //   $('#instructions li').remove();
@@ -352,15 +520,18 @@ $('#submit-route').click(function() {
 if (toggle_heat == false){
     // Add all my points to the heat map
     $.get('/get-crime-ll',
+      JSON.stringify([maxLat, minLat, maxLon, minLon]),
       function(ll){
         var llList = JSON.parse(ll);
-        for (var i = 0; i < 100000; i++){
+        for (var i = 0; i < llList.length; i++){
           heat.addLatLng(llList[i]);
           console.log(llList[i]);
         }
+        heat.addTo(map);
+
       });
       
-        heat.addTo(map);
+
         $('#add-heat_btn').text("Hide heat");
         toggle_heat = true;
       }

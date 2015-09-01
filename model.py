@@ -3,6 +3,8 @@
 from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 from geoalchemy2 import Geography
+from geoalchemy2 import functions as func
+from shapely import wkb
 
 # This is the connection to the SQLite database; we're getting this through
 # the Flask-SQLAlchemy helper library. On this, we can find the `session`
@@ -104,10 +106,29 @@ class CrimePoints(db.Model):
 # def count_crimes_on_leg(cls, origin_lat, origin_lon, dest_lat, dest_lon):
     @classmethod
     def count_crimes_on_leg(cls, origin_lat, origin_lon, dest_lat, dest_lon):
-      
+        print "Counting crimes on (" + origin_lat+' '+origin_lon+', '+dest_lat+' '+dest_lon+')'
         linestring = 'LINESTRING('+origin_lon+' '+origin_lat+','+dest_lon+' '+dest_lat+')'
-        query = db.session.query(cls).filter(cls.crime_pt.ST_Intersects(linestring)).all()
+        # query = db.session.query(cls).filter(func.ST_Intersects(cls.crime_pt, linestring)).all()
+        query = db.session.query(cls).filter(func.ST_DWithin(cls.crime_pt, linestring, 5)).all()
+        print "Query returned", query
+        
         return len(query)
+
+    @classmethod
+    def get_heat_pts(cls, maxLat, minLat, maxLon, minLon):
+        polygon = 'POLYGON(('+str(maxLon)+' '+str(maxLat)+','+str(minLon)+' '+str(maxLat)+','+str(minLon)+' '+str(minLat)+','+str(maxLon)+' '+str(minLat)+','+str(maxLon)+' '+str(maxLat)+'))'
+        query = db.session.query(cls).filter(func.ST_Intersects(cls.crime_pt, polygon)).all()
+        print "Query returned", query
+        lonlat_list = []
+        for crime in query:
+            ll = wkb.loads(bytes(crime.crime_pt.data))
+            lonlat_list.append([ll.y, ll.x])
+            print ll.x, ll.y
+        # for crime in query:
+        #     lonlat_list.append(func.ST_AsText(crime.crime_pt))
+        print "************* lonLat_list is" ,lonlat_list
+        return lonlat_list
+
 
     @classmethod
     def add_new_pt(cls, lat, lon):

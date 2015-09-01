@@ -4,6 +4,37 @@ body {
     padding-top: 70px; 
 
 }
+/*html button {
+    background-color: rgb(214, 173, 51);
+}*/
+
+
+.btn {
+    background-color: rgb(214, 173, 51);
+    border: none;
+    font-family: 'Ringbearer', 'Georgia', serif;
+    color: #CFCFCF;
+  
+}
+.btn:hover{
+    background-color: #CFCFCF;
+    border: none;
+    font-family: 'Ringbearer', 'Georgia', serif;
+    color: rgb(214, 173, 51);
+
+
+}
+.btn:active{
+    border: none;
+    background-color: rgb(214, 173, 51);
+    color: #CFCFCF;
+}
+.btn:focus{
+    border: none;
+    outline: none;
+    background-color: rgb(214, 173, 51);
+    color: #CFCFCF;
+}
 
 #logo {
     height: 35px;
@@ -71,8 +102,16 @@ body {
     overflow: auto;
 }
 
-#instructions, #routes {
+#instructions ul {
     color: #CFCFCF;
+    list-style-type: none;
+    font-family: 'Kelt', 'Georgia', serif;
+    font-size: 1.5em;
+    margin-left: 0.1em; 
+    padding-left: 0;
+}
+#instructions li {
+    margin-top: 0.5em;
 }
  #routes {
     margin-top: 100px;
@@ -167,6 +206,45 @@ input:-moz-placeholder { color:#CFCFCF; }
     color: rgb(214, 173, 51);
 
 }
+#routes h4{
+    margin-top: 80px;
+    color: white;
+}
 #navigation {
     /*background-color: rgba(0,71,0,.8);*/
+}
+/*#chartModal .modal-dialog  
+{
+    width:75%;
+    height: 75%;
+    }*/
+
+
+  .modal-header, .modal-body, .modal-footer{
+    background-color: rgba(16,16,16,0.8);
+    font-family: 'Kelt', 'Georgia', serif;
+    font-size: 1.5em;
+  
+    color: #CFCFCF;
+
+  }
+
+  .modal-title{
+    font-family: 'Kelt', 'Georgia', serif;
+    font-size: 2em;
+    margin: 0 auto;       
+    text-align: center;
+    color: rgb(214, 173, 51);
+
+  }
+ /* .modal-body {
+    overflow-y: hidden;
+    height: 100%;
+    max-height:190px;
+  }*/
+a {
+    text-decoration: none !important;
+}
+a:hover{
+    color: #CFCFCF !important;
 }
