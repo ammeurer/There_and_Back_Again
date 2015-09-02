@@ -33,6 +33,7 @@ ptyprocess==0.5
 Pygments==2.0.2
 pyzmq==14.7.0
 requests==2.7.0
+Shapely==1.5.12
 simplegeneric==0.8.1
 six==1.8.0
 SQLAlchemy==1.0.3
