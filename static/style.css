@@ -13,7 +13,7 @@ body {
     background-color: rgb(214, 173, 51);
     border: none;
     font-family: 'Ringbearer', 'Georgia', serif;
-    color: #CFCFCF;
+    color: white;
   
 }
 .btn:hover{
@@ -27,13 +27,13 @@ body {
 .btn:active{
     border: none;
     background-color: rgb(214, 173, 51);
-    color: #CFCFCF;
+    color: white;
 }
 .btn:focus{
     border: none;
     outline: none;
     background-color: rgb(214, 173, 51);
-    color: #CFCFCF;
+    color: white;
 }
 
 #logo {

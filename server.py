@@ -33,7 +33,7 @@ def index():
     else:
     	print "****************", "there is a user logged in", session.get('logged_in_user')
     	user = User.get_user_by_id(session.get('logged_in_user'))
-    return render_template("map_walking_sample.html", quote=quote, user=user)
+    return render_template("lotr_map.html", quote=quote, user=user)
 
 def pick_quote():
 	quote_list = [
