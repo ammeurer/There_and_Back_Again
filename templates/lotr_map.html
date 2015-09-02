@@ -7,9 +7,7 @@
        
         <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
         <link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
-<!--          // <script src='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.js'></script> -->
-        <!-- <link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.css' type='text/css' /> -->
-         <!-- Latest compiled and minified CSS -->
+
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
         <!-- jQuery library -->
@@ -79,12 +77,12 @@
     <div class='col-md-4' id='directions'>
       <div id='routes'></div>
       <div id='instructions'>
-        <button id="add-heat_btn" name="add-heat" class="btn btn-primary">Heat Map</button>
-        <button id='compare-btn' name="compare-routes" class="btn btn-primary">Crime Density Graph</button>
+        <div style="text-align:center;">
+        <button id="add-heat_btn" name="add-heat" class="btn btn-primary">Generate Heat Map</button><br><br>
+        <button id='compare-btn' name="compare-routes" class="btn btn-primary">View Crime Density Graph</button>
+        </div>
         <ul>
         </ul>
-        <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
-
       </div>
     </div>
 
@@ -96,7 +94,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Sign up to save routes, add and customize alerts to family and friends.</h4>
+        <h4 class="modal-title" id="myModalLabel">Sign up</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" action="/signup" method='post'>
@@ -274,17 +272,6 @@ var turnCode =
     128: "AccessRestrictionFlag",
     129: "AccessRestrictionPenalty"
 };
-// gc.on('select', function(e) {
-//   console.log(e);
-// });
-
-// map.addControl(gc);
-
-// map.addControl(L.mapbox.geocoderControl('mapbox.places', {
-//         autocomplete: true
-//     }));
-
-  // $('#directions').hide();
 
   $('#signup').click(function(){
       $('#signupModal').modal('show');
@@ -293,9 +280,7 @@ var turnCode =
   $('#login').click(function(){
       $('#loginModal').modal('show');
   });
-  // $('#inputs').submit(function(){
-  //     $('#directions').show();
-  // });
+
   var zoomBounds = function(maxLat, minLat, maxLon, minLon){
     var sw = L.latLng(minLat, minLon);
     var ne = L.latLng(maxLat, maxLon);
@@ -361,6 +346,7 @@ var turnCode =
        });
 
   });
+
   var countDensity = function(){
       // var datasets_value = [];
 
@@ -488,8 +474,6 @@ var createChart = function(datasets_value, id){
   $('#compare-btn').click(function(){
     countDensity();
   
-    // $('#chartModal').modal('show');
-
 
   });
   
@@ -510,43 +494,41 @@ var createChart = function(datasets_value, id){
         radius: 8,
         blur: 15, 
         maxZoom: 16,
-        // max: 0
-        // opacity: 0
-        // gradient : {1 : 'blue'}
+      
     });
 
   var toggle_heat = false;
-    $("#add-heat_btn").click(function(){
-if (toggle_heat == false){
-    // Add all my points to the heat map
-    $.get('/get-crime-ll',
-      JSON.stringify([maxLat, minLat, maxLon, minLon]),
-      function(ll){
-        var llList = JSON.parse(ll);
-        for (var i = 0; i < llList.length; i++){
-          heat.addLatLng(llList[i]);
-          console.log(llList[i]);
-        }
-        heat.addTo(map);
+  $("#add-heat_btn").click(function(){
+    if (toggle_heat == false){
+      // Add all my points to the heat map
+      $.get('/get-crime-ll',
+        JSON.stringify([maxLat, minLat, maxLon, minLon]),
+        function(ll){
+          var llList = JSON.parse(ll);
+          for (var i = 0; i < llList.length; i++){
+            heat.addLatLng(llList[i]);
+            console.log(llList[i]);
+          }
+          heat.addTo(map);
 
-      });
-      
+        });
+        
 
-        $('#add-heat_btn').text("Hide heat");
-        toggle_heat = true;
+          $('#add-heat_btn').text("Hide Heat Map");
+          toggle_heat = true;
       }
       else{
         map.removeLayer(heat);
-        $('#add-heat_btn').text("Show heat");
+        $('#add-heat_btn').text("Generate Heat Map");
         toggle_heat = false
       }
 
     });
 
   
-    var defaultBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(37.697965, -122.528500),
-      new google.maps.LatLng(37.822694, -122.355458));
+  var defaultBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(37.697965, -122.528500),
+    new google.maps.LatLng(37.822694, -122.355458));
 
   var origin = document.getElementById('origin');
   var destination = document.getElementById('destination');
@@ -557,32 +539,7 @@ if (toggle_heat == false){
 
   var autocomplete_origin = new google.maps.places.Autocomplete(origin, options);
   var autocomplete_dest = new google.maps.places.Autocomplete(destination, options);
-  // var place_origin = autocomplete_origin.getPlace();
-  // var place_dest = autocomplete_dest.getPlace();
 
-  
-
-
-// create the initial directions object, from which the layer
-// and inputs will pull data.
-// var directions = L.mapbox.directions({
-//     profile: 'mapbox.walking'
-// });
-// // console.log(directions);
-// var directionsLayer = L.mapbox.directions.layer(directions)
-//     .addTo(map);
-
-// var directionsInputControl = L.mapbox.directions.inputControl('inputs', directions)
-//     .addTo(map);
-
-// var directionsErrorsControl = L.mapbox.directions.errorsControl('errors', directions)
-//     .addTo(map);
-
-// var directionsRoutesControl = L.mapbox.directions.routesControl('routes', directions)
-//     .addTo(map);
-
-// var directionsInstructionsControl = L.mapbox.directions.instructionsControl('instructions', directions)
-//     .addTo(map);
 
 </script>
 </body>
