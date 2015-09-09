@@ -38,11 +38,11 @@ There and Back Again is a web app created by Amanda Meurer. Amanda is passionate
 ###Run your own instance of OSRM
 Use this branch of OSRM: https://github.com/ammeurer/osrm-backend/tree/osrm_there_and_back_again
 
- ####Set up your C++ dependencies
+ * Set up your C++ dependencies
  	* `source ./bootstrap.sh`
- ####Compile your source
+ * Compile your source
     * `source ./build_osrm.sh`
- ####Run OSRM
+ * Run OSRM
    "Running OSRM" is here https://github.com/Project-OSRM/osrm-backend/wiki/Running-OSRM 
    However, this is exactly what you need to do for There and Back Again:
   	* `osrm-extract san-francisco_california.osm.pbf -p profiles/foot_crime.lua` (the `*.osm.pbf` file is downloaded from [here](https://mapzen.com/data/metro-extracts))
