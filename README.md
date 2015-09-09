@@ -43,7 +43,7 @@ Use this branch of OSRM: https://github.com/ammeurer/osrm-backend/tree/osrm_ther
  * Compile your source
     * `source ./build_osrm.sh`
  * Run OSRM
-   "Running OSRM" is here https://github.com/Project-OSRM/osrm-backend/wiki/Running-OSRM 
+   * "Running OSRM" is here https://github.com/Project-OSRM/osrm-backend/wiki/Running-OSRM 
    However, this is exactly what you need to do for There and Back Again:
   	* `osrm-extract san-francisco_california.osm.pbf -p profiles/foot_crime.lua` (the `*.osm.pbf` file is downloaded from [here](https://mapzen.com/data/metro-extracts))
   	* `osrm-prepare myextract.osrm -p profiles/foot_crime.lua`
