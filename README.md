@@ -46,8 +46,8 @@ Use this branch of OSRM: https://github.com/ammeurer/osrm-backend/tree/osrm_ther
    * "Running OSRM" is here https://github.com/Project-OSRM/osrm-backend/wiki/Running-OSRM 
    However, this is exactly what you need to do for There and Back Again:
   	* `osrm-extract san-francisco_california.osm.pbf -p profiles/foot_crime.lua` (the `*.osm.pbf` file is downloaded from [here](https://mapzen.com/data/metro-extracts))
-  	* `osrm-prepare myextract.osrm -p profiles/foot_crime.lua`
-  	* `osrm-routed myextract.osrm` -- this command is what will actually start your server, as long as the last two steps were successful; you can now go to `localhost:5000/viaroute?…` as described [here](https://github.com/Project-OSRM/osrm-backend/wiki/Server-api#service-viaroute)
+  	* `osrm-prepare an-francisco_california.osrm -p profiles/foot_crime.lua`
+  	* `osrm-routed an-francisco_california.osrm` -- this command is what will actually start your server, as long as the last two steps were successful; you can now go to `localhost:5000/viaroute?…` as described [here](https://github.com/Project-OSRM/osrm-backend/wiki/Server-api#service-viaroute)
 
 
 ## <a name="use"></a>How to use There and Back Again
