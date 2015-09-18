@@ -54,26 +54,32 @@ Use this branch of OSRM: https://github.com/ammeurer/osrm-backend/tree/osrm_ther
 
 ### Run the There and Back Again Flask App
 
-  * Set up and activate a python virtualenv, and install all dependencies with pip install -r requirements.txt
+  * Set up and activate a python virtualenv, and install all dependencies:
+    * `pip install -r requirements.txt`
   * Make sure you have PostgreSQL running. Create a new database in psql named lotr:
 	* `psql`
-  	* `CREATE DATABASE lotr`
+  	* `CREATE DATABASE lotr;`
   * Create the tables in your database:
     * `python -i model.py`
     * While in interactive mode, create tables: `db.create_all()`
     * Seed the crimes table with crime latitudes and longitudes: `CrimePoints.seed_points()`
   * Now, quit interactive mode. Start up the flask server:
     * `python server.py`
+  * Go to localhost:9000 to see the web app
 
 
 ## <a name="use"></a>How to use There and Back Again
 
-###Enter starting point and destination, then click 'Find a Path'
+###Enter starting point and destination, then click `Find a Path`
+Two routes will appear on the map. The red route is the regular walking route returned by the MapBox Directions API. The golden route is the custom route returned from OSRM that routes the pedestrian around paths with high crime density.
 
+The walking directions will also slide down at this time. 
 
+###Press the `Generate Heat Map` button
+This button will query the database for all the crime occurrences in the bounding box of the current route. It will display these points as a heat map overlaying the map. Press 'Hide Heat Map' to make the heat map go away.
 
-## <a name="v2"></a>Version 2.0
-
+###Press the `View Crime Density Graph` button
+This button will query the database for all points within 5 meters of the safe route, and represent that data as a graph to the user. This graph shows the user how the crime density changes throughout the course of their journey.
 
 ## <a name="author"></a>Author
 Amanda Meurer is a software engineer in San Francisco, CA.
