@@ -1,14 +1,21 @@
+
+/* Import fonts */
+@font-face {
+  font-family: 'Ringbearer';
+  src: url('ring.ttf');  
+}
+
+@font-face {
+    font-family: 'Kelt';
+    src: url('kelt.ttf');
+}
+
 body { 
     margin:0; 
-    /*padding:0; */
     padding-top: 70px; 
 
 }
-/*html button {
-    background-color: rgb(214, 173, 51);
-}*/
-
-
+/* Button Styles */
 .btn {
     background-color: rgb(214, 173, 51);
     border: none;
@@ -35,7 +42,7 @@ body {
     background-color: rgb(214, 173, 51);
     color: white;
 }
-
+/* Navbar styles */
 #logo {
     height: 35px;
     margin-right: 0.1em;
@@ -46,6 +53,14 @@ body {
     margin-right: 0.1em;
     padding-right: 0.1em;
 }
+
+#nav-title {
+    font-family: 'Ringbearer', 'Georgia', serif;
+    font-size: 1.5em;
+    color: rgb(214, 173, 51);
+    margin-left: 0.1em;
+}
+
 #map { 
     position:absolute;
     top:0; 
@@ -53,30 +68,9 @@ body {
     width:100%; 
 }
 
-@font-face {
-  font-family: 'Hobbitbrushhand';
-  src: url('hobbitonbrushhand.ttf');
-  font-family: 'Ringbearer';
-  src: url('ring.ttf');  
-/*  font-family: 'BilboHand';
-  src: url('bilboregular.ttf');
-  font-family: 'PartyBusiness';
-  src: url('partybusiness.ttf');*/
-}
-@font-face {
-    font-family: 'BilboHand';
-  src: url('bilboregular.ttf');
-}
-@font-face {
-    font-family: 'PartyBusiness';
-  src: url('partybusiness.ttf');
-}
-@font-face {
-    font-family: 'Kelt';
-  src: url('kelt.ttf');
-}
 
 
+/* Style Directions */
 #inputs,
 #errors,
 #directions {
@@ -126,22 +120,14 @@ body {
     left: 10px;
 }
 
-#nav-title {
-    font-family: 'Ringbearer', 'Georgia', serif;
-    font-size: 1.5em;
-    color: rgb(214, 173, 51);
-    margin-left: 0.1em;
-
-
-}
 /* all */
 ::-webkit-input-placeholder { color:#CFCFCF; }
 ::-moz-placeholder { color:#CFCFCF; } /* firefox 19+ */
 :-ms-input-placeholder { color:#CFCFCF; } /* ie */
 input:-moz-placeholder { color:#CFCFCF; }
+
+/* Google Maps Autocomplete Style */
 .pac-container {
-    /*position: absolute;*/
-    /*z-index: -1;*/
     padding-top: 2.5em;
     background-color: rgba(16,16,16,0.8);
 }
@@ -162,6 +148,8 @@ input:-moz-placeholder { color:#CFCFCF; }
 .pac-item{
     border-top: none;
 }
+
+/* Style text boxes */
 #origin, #destination {
     background-color: transparent; 
     border-style: solid; 
@@ -195,10 +183,12 @@ input:-moz-placeholder { color:#CFCFCF; }
     font-size: 1.5em;
 
 }
+
 #origin:-webkit-autofill{
     background-color: transparent;
 }
 
+/* Find a path elem */
 #submit-route {
     font-family: 'Kelt', 'Georgia', serif;
     font-size: 1.5em;
@@ -206,45 +196,36 @@ input:-moz-placeholder { color:#CFCFCF; }
     color: rgb(214, 173, 51);
 
 }
+
 #routes h4{
     margin-top: 80px;
     color: white;
 }
-#navigation {
-    /*background-color: rgba(0,71,0,.8);*/
-}
-/*#chartModal .modal-dialog  
-{
-    width:75%;
-    height: 75%;
-    }*/
 
+/* Style Modals */
+.modal-header, .modal-body, .modal-footer {
 
-  .modal-header, .modal-body, .modal-footer{
     background-color: rgba(16,16,16,0.8);
     font-family: 'Kelt', 'Georgia', serif;
     font-size: 1.5em;
-  
     color: #CFCFCF;
 
-  }
+}
 
-  .modal-title{
+.modal-title{
+
     font-family: 'Kelt', 'Georgia', serif;
     font-size: 2em;
     margin: 0 auto;       
     text-align: center;
     color: rgb(214, 173, 51);
 
-  }
- /* .modal-body {
-    overflow-y: hidden;
-    height: 100%;
-    max-height:190px;
-  }*/
+}
+/* Style links */
 a {
     text-decoration: none !important;
 }
+
 a:hover{
     color: #CFCFCF !important;
 }

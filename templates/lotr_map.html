@@ -17,21 +17,25 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="static/style.css">
     </head>
+
 <body>
+  <!-- Navigation Bar -->
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" id='navigation'>
   <div class="container-fluid">
     <div class="navbar-header">
+      <!-- Lord of the Rings walking brand -->
       <a class="navbar-brand" href="/">
         <img id="logo" src="static/walking_gold_big.png">
       </a>
+      <!-- Navbar Title -->
       <a href="/" id='nav-title' class='navbar-text navbar-left'>There and Back Again</a>
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
     <ul id='user-drop' class="nav navbar-nav navbar-right">
-   
-        {% if user %}
+      <!-- Toggle the dropdown based on if a user is signed in -->
+      {% if user %}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.user_name }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -59,7 +63,7 @@
         {% endif %}
     </ul>
 
-  
+  <!-- Origin and Destination Text Fields -->
    <form id='route-form' class="navbar-form navbar-right" autocomplete='off'>
       
         <input type="text" required="required" id="origin" placeholder="Begin" name='start'>
@@ -71,18 +75,22 @@
 
   </div>
 </nav>
+
+<!-- End of Navigation definition -->
+
     <div id='map'></div>
-    <!-- <div id='inputs'></div> -->
-   <!-- <div id='errors'></div> -->
+    <!-- Directions div -->
     <div class='col-md-4' id='directions'>
       <div id='routes'></div>
       <div id='instructions'>
         <div style="text-align:center;">
-        <button id="add-heat_btn" name="add-heat" class="btn btn-primary">Generate Heat Map</button><br><br>
-        <button id='compare-btn' name="compare-routes" class="btn btn-primary">View Crime Density Graph</button>
+          <button id="add-heat_btn" name="add-heat" class="btn btn-primary">Generate Heat Map</button><br><br>
+          <button id='compare-btn' name="compare-routes" class="btn btn-primary">View Crime Density Graph</button>
         </div>
+        <!-- List to add turn instructions to -->
         <ul>
         </ul>
+
       </div>
     </div>
 
@@ -100,12 +108,7 @@
         <form class="form-horizontal" action="/signup" method='post'>
     <fieldset>
 
-        <!-- Form Name -->
-<!--         <legend>Sign up to save your favorite walks, and customize alerts to family and friends.</legend>
- -->
-
-
-        <!-- Text input-->
+        <!-- Name input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="name">Name</label>  
           <div class="col-md-4">
@@ -114,7 +117,7 @@
           </div>
         </div>
 
-        <!-- Text input-->
+        <!-- Email input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="email">Email</label>  
           <div class="col-md-4">
@@ -132,7 +135,7 @@
           </div>
         </div>
 
-        <!-- Button -->
+        <!-- Sign up Button -->
         <div class="form-group">
           <label class="col-md-4 control-label" for="signup"></label>
           <div class="col-md-4">
@@ -162,8 +165,6 @@
       </div>
       <div class="modal-body">
         <canvas id="safeRoute" width="800" height="400"></canvas>
-        <!-- <canvas id="regRoute" width="600" height="400"></canvas> -->
-
       </div>
       <div class="modal-footer">
 
@@ -186,7 +187,7 @@
 
  
 
-        <!-- Text input-->
+        <!-- Email input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="email">Email</label>  
           <div class="col-md-4">
@@ -204,7 +205,7 @@
           </div>
         </div>
 
-        <!-- Button -->
+        <!-- Log in Button -->
         <div class="form-group">
           <label class="col-md-4 control-label" for="login"></label>
           <div class="col-md-4">
@@ -230,317 +231,7 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
 
+<script src="static/map.js"></script>
 
-
-<script>
-L.mapbox.accessToken = 'pk.eyJ1IjoiYW1tZXVyZXIiLCJhIjoiMjg1M2JlM2QwMmE2NjIzZjJmODRjYWM1NDRjODg5YWEifQ.SZQ4FO0OqKTTE4tiv4Au4A';
-
-var southWest = L.latLng(37.697965, -122.528500),
-    northEast = L.latLng(37.822694, -122.355458),
-    bounds = L.latLngBounds(southWest, northEast);
-var map = L.mapbox.map('map', 'ammeurer.5d704af1', {
-    zoomControl: false,
-    maxBounds: bounds
-  
- }).setView([37.78, -122.416], 13);
-
-// move the attribution control out of the way
-map.attributionControl.setPosition('bottomleft');
-
-
-var turnCode = 
-{
-    0: "Continue straight on ",
-    1: "Continue straight on ",
-    2: "Turn slightly right onto ",
-    3: "Turn right onto ",
-    4: "Turn sharply right onto ",
-    5: "Take a U turn at",
-    6: "Turn sharply left onto ",
-    7: "Turn left onto ",
-    8: "Turn slightly left onto ",
-    9: "ReachViaLocation",
-    10: "Head staight on ",
-    11: "Enter the Round About",
-    12: "Leave the Round About",
-    13: "Stay On Round About",
-    14: "StartAtEndOfStreet",
-    15: "You have arrived at your destination!",
-    16: "EnterAgainstAllowedDirection",
-    17: "LeaveAgainstAllowedDirection",
-    127: "InverseAccessRestrictionFlag",
-    128: "AccessRestrictionFlag",
-    129: "AccessRestrictionPenalty"
-};
-
-  $('#signup').click(function(){
-      $('#signupModal').modal('show');
-  });
-
-  $('#login').click(function(){
-      $('#loginModal').modal('show');
-  });
-
-  var zoomBounds = function(maxLat, minLat, maxLon, minLon){
-    var sw = L.latLng(minLat, minLon);
-    var ne = L.latLng(maxLat, maxLon);
-    var newBounds = L.latLngBounds(sw, ne);
-    map.fitBounds(newBounds);
-  };
-
-  var pl = null;  
-  var pl_mb = null;
-
-  var maxLon, maxLat, minLon, minLat;
-  var polyline_ll_array = null;
-  var polyline_ll_array_mb = null;
-  $('#submit-route').click(function() {
-
-    if(pl !== null){
-      map.removeLayer(pl);
-      $('#directions').slideUp(200);
-      $('#instructions li').remove();
-    } 
-    $.get(
-      "/get-route",
-      $("#route-form").serialize(),
-      function (result) {
-        var parsedOSRM = JSON.parse(result);
-        console.log(parsedOSRM);
-        polyline_ll_array = polyline.decode(parsedOSRM.route_geometry, 6);
-        console.log(polyline_ll_array);
-        var polyline_options = {
-          color: '#D6AD33',
-          opacity: 0.9
-        };
-        pl = L.polyline(polyline_ll_array, polyline_options);
-        pl.addTo(map);
-        maxLon, maxLat, minLon, minLat;
-        var via_pts = parsedOSRM.via_points;
-        if(via_pts[0][0] >= via_pts[1][0]){
-          maxLat = via_pts[0][0];
-          minLat = via_pts[1][0];
-        }else{
-          maxLat = via_pts[1][0];
-          minLat = via_pts[0][0];
-        }
-        if(via_pts[0][1] >= via_pts[1][1]){
-          maxLon = via_pts[0][1];
-          minLon = via_pts[1][1];
-        }else{
-          maxLon = via_pts[1][1];
-          minLon = via_pts[0][1];
-        }
-        zoomBounds(maxLat, minLat, maxLon, minLon);
-        var instructions = parsedOSRM.route_instructions
-        // var route_name = "<h4>" + parsedOSRM.route_name[0] + "</h4>";
-        // $('#instructions').append(route_name);
-        for(var i = 0; i < instructions.length; i++){
-          var instruct = "<li>"  + turnCode[instructions[i][0]] + " " + instructions[i][1]+"</li>";
-          $('#instructions ul').append(instruct);
-        }
-        
-        $('#directions').slideDown(300);
-
-
-       });
-
-  });
-
-  var countDensity = function(){
-      // var datasets_value = [];
-
-      $.get(
-          '/get-leg-counts',
-          JSON.stringify(polyline_ll_array),
-          function(density_list){
-            id = '.modal-body #safeRoute';
-            densities = JSON.parse(density_list);
-            // datasets_value.push(densities);
-            // console.log(datasets_value);
-            // console.log(densities);
-            var sum= 0;
-            for(var i = 0; i<densities.length; i++){
-              sum += densities[i];
-            }
-            var avg = sum / densities.length;
-            console.log(avg);
-            createChart(densities, id);
-            $('#chartModal').modal('show');
-
-          });
-      // $.get(
-      //     '/get-leg-counts',
-      //     JSON.stringify(polyline_ll_array_mb),
-      //     function(density_list){
-      //       id = '.modal-body #regRoute';
-      //       densities = JSON.parse(density_list);
-      //       // datasets_value.push(densities);
-      //       // console.log(datasets_value);
-      //       // console.log(densities);
-      //       var sum= 0;
-      //       for(var i = 0; i<densities.length; i++){
-      //         sum += densities[i];
-      //       }
-      //       var avg = sum / densities.length;
-      //       console.log(avg);
-      //       createChart(densities, id);
-      //       $('#chartModal').modal('show');
-
-
-      //     });
-      
-
-  };
-$('#submit-route').click(function() {
-    console.log("got into click");
-    if(pl_mb !== null){
-      map.removeLayer(pl_mb);
-      //$('#directions').slideUp(200);
-      //$('#instructions li').remove();
-    } 
-    $.get(
-      "/get-mb-route",
-      $("#route-form").serialize(),
-      function (result) {
-        console.log(result);
-        var parsedMB = JSON.parse(result);
-        console.log(parsedMB);
-        console.log(parsedMB.routes[0].geometry);
-        console.log(parsedMB.routes);
-        polyline_ll_array_mb = polyline.decode(parsedMB.routes[0].geometry, 6);
-        console.log(polyline_ll_array_mb);
-        var polyline_options = {
-          color: 'red',
-          opacity: 0.3
-        };
-        pl_mb = L.polyline(polyline_ll_array_mb, polyline_options);
-        pl_mb.addTo(map);
-
-        //var instructions = parsedOSRM.route_instructions
-        // for(var i = 0; i < instructions.length; i++){
-        //   var instruct = "<li>"  + instructions[i][1] + " " + "" + instructions[i][6] +"</li>";
-        //   $('#instructions ul').append(instruct);
-        // }
-        //var route_name = "<h4>" + parsedOSRM.route_name[0] + "</h4>";
-        //$('#routes').add(route_name);
-        //$('#directions').slideDown(300);
-
-      });
-
-  });
-var createChart = function(datasets_value, id){
-  $('#chartModal').on('shown.bs.modal', function (event) {
-
-    // var button = $(event.relatedTarget);
-    var modal = $(this);
-    var canvas = modal.find(id);
-    var ctx = canvas[0].getContext("2d");
-
-  // var ctx = $("#myChart").get(0).getContext("2d");
-    console.log(datasets_value);
-    // console.log(datasets_value[0]);
-    // console.log(datasets_value[0].length);
-    // console.log(datasets_value[1].length);
-    label_list = [];
-    for(var i=0; i < datasets_value.length; i++){
-      label_list.push(' ');
-    }
-
-     var data = {
-            labels: label_list,
-            datasets: [
-              {
-                label: "Safe Route",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: datasets_value
-              }
-      
-
-            ]
-            };
-   
-            var myLineChart = new Chart(ctx).Line(data);
-            });
-
-};
-
-
-  $('#compare-btn').click(function(){
-    countDensity();
-  
-
-  });
-  
-  // $('#origin').on('change', function(){
-  //   $('#directions').slideUp(300);
-  //   $('#instructions li').remove();
-  //   map.removeLayer(pl);
-  // });
-  // $('#destination').on('change', function(){
-  //   $('#directions').slideUp(300);
-  //   $('#steps li').remove();
-  //   map.removeLayer(pl);
-
-  // });
-  var heat = L.heatLayer([], {    //define heat layer options
-        maxOpacity: 0.4, 
-        minOpacity: 0.1,
-        radius: 8,
-        blur: 15, 
-        maxZoom: 16,
-      
-    });
-
-  var toggle_heat = false;
-  $("#add-heat_btn").click(function(){
-    if (toggle_heat == false){
-      // Add all my points to the heat map
-      $.get('/get-crime-ll',
-        JSON.stringify([maxLat, minLat, maxLon, minLon]),
-        function(ll){
-          var llList = JSON.parse(ll);
-          for (var i = 0; i < llList.length; i++){
-            heat.addLatLng(llList[i]);
-            console.log(llList[i]);
-          }
-          heat.addTo(map);
-
-        });
-        
-
-          $('#add-heat_btn').text("Hide Heat Map");
-          toggle_heat = true;
-      }
-      else{
-        map.removeLayer(heat);
-        $('#add-heat_btn').text("Generate Heat Map");
-        toggle_heat = false
-      }
-
-    });
-
-  
-  var defaultBounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(37.697965, -122.528500),
-    new google.maps.LatLng(37.822694, -122.355458));
-
-  var origin = document.getElementById('origin');
-  var destination = document.getElementById('destination');
-  var options = {
-    bounds: defaultBounds,
-    types: ['address'] 
-  };
-
-  var autocomplete_origin = new google.maps.places.Autocomplete(origin, options);
-  var autocomplete_dest = new google.maps.places.Autocomplete(destination, options);
-
-
-</script>
 </body>
 </html>

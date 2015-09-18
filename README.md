@@ -35,6 +35,9 @@ There and Back Again is a web app created by Amanda Meurer. Amanda is passionate
 (dependencies are listed in requirements.txt)
 
 ## <a name="run"></a>How to locally run There and Back Again
+
+There and Back Again has not yet been deployed, so here is how to run the app locally on your machine.
+
 ###Run your own instance of OSRM
 Use this branch of OSRM: https://github.com/ammeurer/osrm-backend/tree/osrm_there_and_back_again
 
@@ -46,13 +49,26 @@ Use this branch of OSRM: https://github.com/ammeurer/osrm-backend/tree/osrm_ther
    * "Running OSRM" is here https://github.com/Project-OSRM/osrm-backend/wiki/Running-OSRM 
    However, this is exactly what you need to do for There and Back Again:
   	* `osrm-extract san-francisco_california.osm.pbf -p profiles/foot_crime.lua` (the `*.osm.pbf` file is downloaded from [here](https://mapzen.com/data/metro-extracts))
-  	* `osrm-prepare an-francisco_california.osrm -p profiles/foot_crime.lua`
-  	* `osrm-routed an-francisco_california.osrm` -- this command is what will actually start your server, as long as the last two steps were successful; you can now go to `localhost:5000/viaroute?…` as described [here](https://github.com/Project-OSRM/osrm-backend/wiki/Server-api#service-viaroute)
+  	* `osrm-prepare san-francisco_california.osrm -p profiles/foot_crime.lua`
+  	* `osrm-routed san-francisco_california.osrm` -- this command is what will actually start your server, as long as the last two steps were successful; you can now go to `localhost:5000/viaroute?…` as described [here](https://github.com/Project-OSRM/osrm-backend/wiki/Server-api#service-viaroute)
+
+### Run the There and Back Again Flask App
+
+  * Set up and activate a python virtualenv, and install all dependencies with pip install -r requirements.txt
+  * Make sure you have PostgreSQL running. Create a new database in psql named lotr:
+	* `psql`
+  	* `CREATE DATABASE lotr`
+  * Create the tables in your database:
+    * `python -i model.py`
+    * While in interactive mode, create tables: `db.create_all()`
+    * Seed the crimes table with crime latitudes and longitudes: `CrimePoints.seed_points()`
+  * Now, quit interactive mode. Start up the flask server:
+    * `python server.py`
 
 
 ## <a name="use"></a>How to use There and Back Again
 
-####Enter starting point and destination, then click 'Find a Path'
+###Enter starting point and destination, then click 'Find a Path'
 
 
 

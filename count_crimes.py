@@ -2,8 +2,6 @@
 
 import numpy as np
 
-
-
 seed_file_name = "crime_ll"
 
 

@@ -202,6 +202,7 @@ def connect_to_db(app):
     # postgresql://scott:tiger@localhost/mydatabase
     db.app = app
     db.init_app(app)
+    db.create_all()
 
 
 if __name__ == "__main__":
