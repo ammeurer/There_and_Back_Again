@@ -11,7 +11,6 @@ There and Back Again is a web app created by Amanda Meurer. Amanda is passionate
 * [Technologies Used](#technologiesused)
 * [How to locally run There and Back Again](#run)
 * [How to use There and Back Again](#use)
-* [Version 2.0](#v2)
 
 ## <a name="technologiesused"></a>Technologies Used
 
@@ -75,11 +74,17 @@ Two routes will appear on the map. The red route is the regular walking route re
 
 The walking directions will also slide down at this time. 
 
+![There and Back Again Route and Directions](/static/routed.png)
+
 ###Press the `Generate Heat Map` button
 This button will query the database for all the crime occurrences in the bounding box of the current route. It will display these points as a heat map overlaying the map. Press 'Hide Heat Map' to make the heat map go away.
 
+![There and Back Again Heat Map](/static/heatmap.png)
+
 ###Press the `View Crime Density Graph` button
 This button will query the database for all points within 5 meters of the safe route, and represent that data as a graph to the user. This graph shows the user how the crime density changes throughout the course of their journey.
+
+![There and Back Again Graph](/static/graph.png)
 
 ## <a name="author"></a>Author
 Amanda Meurer is a software engineer in San Francisco, CA.
