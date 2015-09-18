@@ -103,14 +103,12 @@ class CrimePoints(db.Model):
 
     def __repr__(self):
         return "<Crime crime_id=%s crime_pt=%s" % (self.crime_id, self.crime_pt)
-# def count_crimes_on_leg(cls, origin_lat, origin_lon, dest_lat, dest_lon):
     @classmethod
     def count_crimes_on_leg(cls, origin_lat, origin_lon, dest_lat, dest_lon):
         print "Counting crimes on (" + origin_lat+' '+origin_lon+', '+dest_lat+' '+dest_lon+')'
         linestring = 'LINESTRING('+origin_lon+' '+origin_lat+','+dest_lon+' '+dest_lat+')'
-        # query = db.session.query(cls).filter(func.ST_Intersects(cls.crime_pt, linestring)).all()
         query = db.session.query(cls).filter(func.ST_DWithin(cls.crime_pt, linestring, 5)).all()
-        print "Query returned", query
+        # print "Query returned", query
         
         return len(query)
 
@@ -118,7 +116,7 @@ class CrimePoints(db.Model):
     def get_heat_pts(cls, maxLat, minLat, maxLon, minLon):
         polygon = 'POLYGON(('+str(maxLon)+' '+str(maxLat)+','+str(minLon)+' '+str(maxLat)+','+str(minLon)+' '+str(minLat)+','+str(maxLon)+' '+str(minLat)+','+str(maxLon)+' '+str(maxLat)+'))'
         query = db.session.query(cls).filter(func.ST_Intersects(cls.crime_pt, polygon)).all()
-        print "Query returned", query
+        # print "Query returned", query
         lonlat_list = []
         for crime in query:
             ll = wkb.loads(bytes(crime.crime_pt.data))
@@ -126,7 +124,7 @@ class CrimePoints(db.Model):
             print ll.x, ll.y
         # for crime in query:
         #     lonlat_list.append(func.ST_AsText(crime.crime_pt))
-        print "************* lonLat_list is" ,lonlat_list
+        # print "************* lonLat_list is" ,lonlat_list
         return lonlat_list
 
 
@@ -139,7 +137,6 @@ class CrimePoints(db.Model):
 
     @classmethod
     def seed_pts(cls):
-        # fh = open('crime_ll')
         # Initialize list that will hold all the longitudes and latitudes
         lonlat_list = []
         # Open and parse lat and lon tuples from seed file
@@ -147,50 +144,11 @@ class CrimePoints(db.Model):
             for line in seed_fh:
                 lat, lon = line.split()
                 cls.add_new_pt(lat, lon)
-                # lonlat_list.append((lon, lat))
         # print lonlat_list  
         db.session.commit() 
         seed_fh.close() 
 
-    # def update_rating(self, new_rating):
-    #     self.score = new_rating
-    #     db.session.commit()
-    #
-    # @classmethod
-    # def create_new_rating(cls, movie_id, user_id, score):
-    #     new_rating_row = cls(movie_id=movie_id, user_id=user_id, score=score)
-    #     db.session.add(new_rating_row)
-    #     db.session.commit()
-    #     return new_rating_row
-    #
-    # @classmethod
-    # def get_rating(cls, movie_id, user_id):
-    #     rating = db.session.query(cls).filter(cls.movie_id == movie_id,
-    #                                             cls.user_id == user_id).first()
-    #     return rating
-    #
-    #
-    #
-    # @classmethod
-    # def get_user_ratings(cls, user_id):
-    #     # print "******************", user_id
-    #
-    #     rating_list = db.session.query(cls).filter(cls.user_id == user_id).all()
-    #     return rating_list
-    #
-    # @classmethod
-    # def get_movie_ratings(cls, movie_id):
-    #     # print "******************", user_id
-    #
-    #     rating_list = db.session.query(cls).filter(cls.movie_id == movie_id).all()
-    #     return rating_list
-
-    # def __repr__(self):
-    #     """Provide helpful representation when printed."""
-
-    #     return "<Contact contact_id = %s user_id=%s contact_name=%s \
-    #     phone_number=%s>" % (self.contact_id, self.user_id, self.contact_name, self.phone_number)
-
+    
 ##############################################################################
 # Helper functions
 

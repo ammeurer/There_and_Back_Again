@@ -67,28 +67,37 @@ var pl_mb = null;
 var maxLon, maxLat, minLon, minLat;
 var polyline_ll_array = null;
 var polyline_ll_array_mb = null;
-  $('#submit-route').click(function() {
 
-    if(pl !== null){
-      map.removeLayer(pl);
-      $('#directions').slideUp(200);
-      $('#instructions li').remove();
-    } 
+// When the user clicks 'find a path'
+// this event is triggered
+$('#submit-route').click(function() {
+	// If the directions div is already 
+	// slid down, make it slide up and remove the 
+	// instructions from the previous route
+	if(pl !== null){
+		map.removeLayer(pl);
+		$('#directions').slideUp(200);
+		$('#instructions li').remove();
+	} 
+	// Get the new route from OSRM
     $.get(
       "/get-route",
       $("#route-form").serialize(),
       function (result) {
         var parsedOSRM = JSON.parse(result);
         console.log(parsedOSRM);
+        // Decode polyline
         polyline_ll_array = polyline.decode(parsedOSRM.route_geometry, 6);
         console.log(polyline_ll_array);
+        // Style the polyline
         var polyline_options = {
           color: '#D6AD33',
           opacity: 0.9
         };
+        // Add the polyline to the map
         pl = L.polyline(polyline_ll_array, polyline_options);
         pl.addTo(map);
-        maxLon, maxLat, minLon, minLat;
+        // Figure out what the bounding box of the route is
         var via_pts = parsedOSRM.via_points;
         if(via_pts[0][0] >= via_pts[1][0]){
           maxLat = via_pts[0][0];
@@ -104,64 +113,53 @@ var polyline_ll_array_mb = null;
           maxLon = via_pts[1][1];
           minLon = via_pts[0][1];
         }
+        // Zoom in on the route 
         zoomBounds(maxLat, minLat, maxLon, minLon);
         var instructions = parsedOSRM.route_instructions
-        // var route_name = "<h4>" + parsedOSRM.route_name[0] + "</h4>";
-        // $('#instructions').append(route_name);
+        // Add instructions to directions div
         for(var i = 0; i < instructions.length; i++){
           var instruct = "<li>"  + turnCode[instructions[i][0]] + " " + instructions[i][1]+"</li>";
           $('#instructions ul').append(instruct);
         }
-        
+        // Slide down the directions div
         $('#directions').slideDown(300);
 
 
-       });
+    });
 
-  });
+});
 
-  var countDensity = function(){
-      // var datasets_value = [];
+// Count the crime density along the path
+var countDensity = function(){
+	$.get(
+		'/get-leg-counts',
+		JSON.stringify(polyline_ll_array),
+		function(density_list){
+			var sum= 0;	
+			var id = '.modal-body #safeRoute';
+			var densities = JSON.parse(density_list);
 
-      $.get(
-          '/get-leg-counts',
-          JSON.stringify(polyline_ll_array),
-          function(density_list){
-            id = '.modal-body #safeRoute';
-            densities = JSON.parse(density_list);
-            // datasets_value.push(densities);
-            // console.log(datasets_value);
-            // console.log(densities);
-            var sum= 0;
-            for(var i = 0; i<densities.length; i++){
-              sum += densities[i];
-            }
-            var avg = sum / densities.length;
-            console.log(avg);
-            createChart(densities, id);
-            $('#chartModal').modal('show');
+			for(var i = 0; i < densities.length; i++){
+			    sum += densities[i];
+			}
+		    var avg = sum / densities.length;
+		    createChart(densities, id);
+		    $('#chartModal').modal('show');
 
-          });
-  
-      
+	});
+};
 
-  };
+// Query the MapBox API for the normal walking route
 $('#submit-route').click(function() {
-    console.log("got into click");
+	// If there is already a route on the map, remove it
     if(pl_mb !== null){
       map.removeLayer(pl_mb);
-      //$('#directions').slideUp(200);
-      //$('#instructions li').remove();
     } 
     $.get(
       "/get-mb-route",
       $("#route-form").serialize(),
       function (result) {
-        console.log(result);
         var parsedMB = JSON.parse(result);
-        console.log(parsedMB);
-        console.log(parsedMB.routes[0].geometry);
-        console.log(parsedMB.routes);
         polyline_ll_array_mb = polyline.decode(parsedMB.routes[0].geometry, 6);
         console.log(polyline_ll_array_mb);
         var polyline_options = {
@@ -171,125 +169,95 @@ $('#submit-route').click(function() {
         pl_mb = L.polyline(polyline_ll_array_mb, polyline_options);
         pl_mb.addTo(map);
 
-        //var instructions = parsedOSRM.route_instructions
-        // for(var i = 0; i < instructions.length; i++){
-        //   var instruct = "<li>"  + instructions[i][1] + " " + "" + instructions[i][6] +"</li>";
-        //   $('#instructions ul').append(instruct);
-        // }
-        //var route_name = "<h4>" + parsedOSRM.route_name[0] + "</h4>";
-        //$('#routes').add(route_name);
-        //$('#directions').slideDown(300);
-
       });
 
   });
+
+// Create the Crime Density chart with charts.js
 var createChart = function(datasets_value, id){
-  $('#chartModal').on('shown.bs.modal', function (event) {
+	$('#chartModal').on('shown.bs.modal', function (event) {
+		var modal = $(this);
+		var canvas = modal.find(id);
+		var ctx = canvas[0].getContext("2d");
+		label_list = [];
+		// Make all the labels empty strings b/c we don't want labels
+		for(var i=0; i < datasets_value.length; i++){
+		  label_list.push(' ');
+		}
 
-    // var button = $(event.relatedTarget);
-    var modal = $(this);
-    var canvas = modal.find(id);
-    var ctx = canvas[0].getContext("2d");
-
-  // var ctx = $("#myChart").get(0).getContext("2d");
-    console.log(datasets_value);
-    // console.log(datasets_value[0]);
-    // console.log(datasets_value[0].length);
-    // console.log(datasets_value[1].length);
-    label_list = [];
-    for(var i=0; i < datasets_value.length; i++){
-      label_list.push(' ');
-    }
-
-     var data = {
-            labels: label_list,
-            datasets: [
-              {
-                label: "Safe Route",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: datasets_value
-              }
-      
-
-            ]
-            };
+		var data = {
+			labels: label_list,
+			datasets: [{
+				label: "Safe Route",
+				fillColor: "rgba(220,220,220,0.2)",
+				strokeColor: "rgba(220,220,220,1)",
+				pointColor: "rgba(220,220,220,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(220,220,220,1)",
+				data: datasets_value
+			}]
+        };
    
-            var myLineChart = new Chart(ctx).Line(data);
-            });
+        var myLineChart = new Chart(ctx).Line(data);
+    });
 
 };
 
-
-  $('#compare-btn').click(function(){
+// Trigger the count density and graph
+$('#compare-btn').click(function(){
     countDensity();
-  
+ 
+});
 
-  });
-  
-  // $('#origin').on('change', function(){
-  //   $('#directions').slideUp(300);
-  //   $('#instructions li').remove();
-  //   map.removeLayer(pl);
-  // });
-  // $('#destination').on('change', function(){
-  //   $('#directions').slideUp(300);
-  //   $('#steps li').remove();
-  //   map.removeLayer(pl);
 
-  // });
-  var heat = L.heatLayer([], {    //define heat layer options
-        maxOpacity: 0.4, 
-        minOpacity: 0.1,
-        radius: 8,
-        blur: 15, 
-        maxZoom: 16,
+// HeatMap 
+var heat = L.heatLayer([], {    //define heat layer options
+    maxOpacity: 0.4, 
+    minOpacity: 0.1,
+    radius: 8,
+    blur: 15, 
+    maxZoom: 16,
       
-    });
+});
 
-  var toggle_heat = false;
-  $("#add-heat_btn").click(function(){
+var toggle_heat = false;
+$("#add-heat_btn").click(function(){
     if (toggle_heat == false){
-      // Add all my points to the heat map
-      $.get('/get-crime-ll',
-        JSON.stringify([maxLat, minLat, maxLon, minLon]),
-        function(ll){
-          var llList = JSON.parse(ll);
-          for (var i = 0; i < llList.length; i++){
-            heat.addLatLng(llList[i]);
-            console.log(llList[i]);
-          }
-          heat.addTo(map);
+		// Add all my points to the heat map
+		$.get('/get-crime-ll',
+			JSON.stringify([maxLat, minLat, maxLon, minLon]),
+			function(ll){
+		  		var llList = JSON.parse(ll);
+		  		for (var i = 0; i < llList.length; i++){
+		    		heat.addLatLng(llList[i]);
+		  		}
+		  		heat.addTo(map);
 
-        });
+		});
         
 
-          $('#add-heat_btn').text("Hide Heat Map");
-          toggle_heat = true;
-      }
-      else{
+        $('#add-heat_btn').text("Hide Heat Map");
+        	toggle_heat = true;
+    } else{
         map.removeLayer(heat);
         $('#add-heat_btn').text("Generate Heat Map");
         toggle_heat = false
-      }
+    }
 
-    });
+});
 
-  
-  var defaultBounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(37.697965, -122.528500),
-    new google.maps.LatLng(37.822694, -122.355458));
+// Goople Maps Autocomplete 
+var defaultBounds = new google.maps.LatLngBounds(
+	new google.maps.LatLng(37.697965, -122.528500),
+	new google.maps.LatLng(37.822694, -122.355458));
 
-  var origin = document.getElementById('origin');
-  var destination = document.getElementById('destination');
-  var options = {
+var origin = document.getElementById('origin');
+var destination = document.getElementById('destination');
+var options = {
     bounds: defaultBounds,
     types: ['address'] 
-  };
-
-  var autocomplete_origin = new google.maps.places.Autocomplete(origin, options);
-  var autocomplete_dest = new google.maps.places.Autocomplete(destination, options);
+};
+// Add autocomplete to the text boxes
+var autocomplete_origin = new google.maps.places.Autocomplete(origin, options);
+var autocomplete_dest = new google.maps.places.Autocomplete(destination, options);
